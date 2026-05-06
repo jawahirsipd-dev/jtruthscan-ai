@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AI Prompt Tool</title>
+<title>AI Master Prompt Tool</title>
 
 <style>
 body {
@@ -10,15 +10,15 @@ body {
   font-family: Arial, sans-serif;
   background: #0f172a;
   color: white;
-  padding: 30px;
+  padding: 20px;
 }
 
-.box {
+.container {
   max-width: 900px;
   margin: auto;
-  background: rgba(30, 41, 59, 0.7);
+  background: #1e293b;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 
 h1 {
@@ -26,78 +26,119 @@ h1 {
   color: #38bdf8;
 }
 
+textarea {
+  width: 100%;
+  height: 420px;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  font-size: 14px;
+  outline: none;
+  background: #0b1220;
+  color: white;
+}
+
 button {
-  padding: 10px 20px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
   border: none;
   border-radius: 10px;
   background: #22c55e;
   color: white;
+  font-size: 16px;
   cursor: pointer;
-  margin-bottom: 15px;
 }
 
-textarea {
-  width: 100%;
-  height: 400px;
-  background: #0b1220;
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 14px;
+button:hover {
+  background: #16a34a;
 }
 
+.note {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.7;
+  text-align: center;
+}
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<h1>🧠 TruthScan AI Prompt</h1>
+<h1>🧠 AI Master Prompt Tool</h1>
+
+<textarea id="text">
+
+You are a senior frontend developer and UI/UX designer.
+
+Build a single-page website called "TruthScan AI Pro".
+
+REQUIREMENTS:
+- Dark modern SaaS UI
+- Glassmorphism design
+- Viral TikTok style UI
+- Animated glowing background
+- Mobile responsive layout
+
+CORE FUNCTION:
+User pastes chat message and clicks scan.
+
+The system analyzes message using pattern-based logic and returns:
+
+- Love Level (%)
+- Sincerity (%)
+- Honesty (%)
+- Emotional Clarity (%)
+- Manipulation Risk (%)
+
+LOGIC RULES:
+- Detect emotional words
+- Detect avoidance words
+- Detect defensive words
+- Analyze message length
+- Analyze uncertainty phrases
+
+OUTPUT STYLE:
+- AI psychological report
+- Clear percentages
+- Emotional interpretation
+- Final conclusion
+
+CONCLUSION TYPES:
+- High love + honesty → genuine emotional intent
+- Mixed signals → unclear emotional behavior
+- Low scores → manipulation or emotional distance
+
+FEATURES:
+- scanning animation
+- delayed result reveal
+- copy/share button
+- viral AI badge
+
+Return ONLY full working HTML code.
+
+</textarea>
 
 <button onclick="copyText()">📋 Copy Prompt</button>
 
-<textarea id="prompt">
-
-You are a senior frontend developer.
-
-Build a single-page HTML website called "TruthScan AI Pro".
-
-FEATURES:
-- Dark SaaS UI
-- Glassmorphism design
-- Chat input box
-- Scan button
-- AI emotional analysis output
-
-OUTPUT MUST INCLUDE:
-- Love %
-- Sincerity %
-- Honesty %
-- Emotional clarity %
-- Manipulation risk %
-
-Use pattern-based logic (keywords, message length, tone).
-
-Make it look like a viral AI tool for TikTok.
-
-Return full working HTML only.
-
-</textarea>
+<div class="note">
+If copy doesn’t work, manually select text and press Ctrl + C
+</div>
 
 </div>
 
 <script>
 function copyText() {
-  let text = document.getElementById("prompt");
+  let text = document.getElementById("text");
 
+  // simple reliable copy method
+  text.focus();
   text.select();
-  text.setSelectionRange(0, 99999);
+  document.execCommand("copy");
 
-  navigator.clipboard.writeText(text.value)
-    .then(() => alert("Copied successfully 🔥"))
-    .catch(() => alert("Copy failed — please select manually"));
+  alert("Prompt copied successfully 🔥");
 }
 </script>
 
