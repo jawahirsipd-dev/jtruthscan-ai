@@ -1,63 +1,85 @@
-setTimeout(() => {
+You are a senior frontend developer and viral SaaS product designer.
 
-  let text = document.getElementById("text").value.toLowerCase();
+Build a complete single-file website (HTML + CSS + JavaScript in one file) called:
 
-  // BASE SCORES
-  let honesty = 80;
-  let love = 70;
-  let sincerity = 75;
-  let emotionalClarity = 70;
-  let manipulationRisk = 20;
+“TruthScan AI Pro”
 
-  // PATTERN ANALYSIS
-  const weak = ["maybe","not sure","idk","i guess","probably"];
-  const avoid = ["busy","later","talk later","not now","sleeping"];
-  const defensive = ["trust me","i swear","believe me","honestly"];
-  const cold = ["ok","k","lol","kk"];
+🚀 PURPOSE:
+A viral AI-style emotional chat analyzer tool that users can paste messages into and get a psychological breakdown.
 
-  weak.forEach(w => { if(text.includes(w)) { honesty -= 8; emotionalClarity -= 10; }});
-  avoid.forEach(w => { if(text.includes(w)) { sincerity -= 12; love -= 8; }});
-  defensive.forEach(w => { if(text.includes(w)) { manipulationRisk += 15; honesty -= 10; }});
-  cold.forEach(w => { if(text.includes(w)) { love -= 10; emotionalClarity -= 8; }});
+---
 
-  if(text.length < 15) { sincerity -= 10; emotionalClarity -= 10; }
-  if(text.split(" ").length < 4) { honesty -= 8; }
+🎨 DESIGN REQUIREMENTS:
+- Ultra modern dark SaaS UI
+- Glassmorphism card design
+- Glowing animated background
+- Gradient neon buttons
+- Smooth hover animations
+- Mobile responsive layout
+- TikTok viral aesthetic (clean, dramatic, futuristic)
 
-  // LIMIT RANGE 0-100
-  honesty = Math.max(0, Math.min(100, honesty));
-  love = Math.max(0, Math.min(100, love));
-  sincerity = Math.max(0, Math.min(100, sincerity));
-  emotionalClarity = Math.max(0, Math.min(100, emotionalClarity));
-  manipulationRisk = Math.max(0, Math.min(100, manipulationRisk));
+---
 
-  // FINAL RESULT STYLE
-  document.getElementById("result").innerHTML = `
-    <h3>🧠 AI Emotional Report</h3>
+🧠 CORE FUNCTION:
+User pastes a chat message and clicks “Scan Message”.
 
-    <p>❤️ Love Level: <b>${love}%</b></p>
-    <p>💬 Sincerity: <b>${sincerity}%</b></p>
-    <p>🧠 Emotional Clarity: <b>${emotionalClarity}%</b></p>
-    <p>🤝 Honesty Score: <b>${honesty}%</b></p>
-    <p>⚠️ Manipulation Risk: <b>${manipulationRisk}%</b></p>
+The tool must analyze the text using pattern-based logic and output:
 
-    <hr>
+📊 MULTI-PERCENT REPORT:
+- ❤️ Love Level (%)
+- 💬 Sincerity (%)
+- 🧠 Emotional Clarity (%)
+- 🤝 Honesty Score (%)
+- ⚠️ Manipulation Risk (%)
 
-    <p><b>Final AI Conclusion:</b></p>
-    <p>
-      ${
-        honesty > 75 && love > 70
-          ? "This message shows strong emotional sincerity and genuine intent ❤️"
-          : sincerity > 50 && manipulationRisk < 40
-          ? "Mixed emotional signals — some sincerity but unclear intent 🤔"
-          : "High emotional inconsistency detected — possible manipulation or emotional distance 🚨"
-      }
-    </p>
+Each should be calculated using keyword + pattern detection like:
+- emotional words
+- avoidance words
+- defensive words
+- message length
+- uncertainty words
 
-    <p style="opacity:0.6; font-size:12px;">
-      AI analysis based on emotional pattern detection (not guaranteed truth)
-    </p>
-  `;
+---
 
-  document.getElementById("status").innerText = "Emotional report generated ✔";
+📢 OUTPUT STYLE:
+The result must look like an AI psychological report:
 
-}, 1800);
+- Clear sections
+- Bold percentages
+- Emotional labels
+- Final conclusion text
+
+Final conclusion must dynamically change:
+- High sincerity → “genuine emotional intent”
+- Mixed signals → “uncertain emotional clarity”
+- Low score → “possible manipulation or emotional distance”
+
+---
+
+⚡ VIRAL FEATURES:
+- Scanning animation (“Analyzing…”, “Detecting emotion…”)
+- Delayed result reveal (1–2 seconds suspense)
+- Copy/share button
+- “Viral AI Tool” badge
+- Emotional storytelling style results
+
+---
+
+📱 PSYCHOLOGY REQUIREMENTS:
+The tool must trigger curiosity and emotion:
+- relationships
+- trust issues
+- love confusion
+- emotional analysis
+
+---
+
+💻 OUTPUT FORMAT:
+- Single HTML file only
+- No external dependencies
+- Fully working code
+- Clean, production-ready structure
+
+---
+
+Make it look like a real AI startup product that could go viral on TikTok and Instagram Reels.
