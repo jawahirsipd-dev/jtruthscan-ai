@@ -1,219 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>TruthScan AI Pro</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #000);
-  color: white;
-  text-align: center;
-  padding: 30px;
-  overflow-x: hidden;
-}
-
-/* Glow background */
-.glow {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  background: #38bdf8;
-  filter: blur(180px);
-  opacity: 0.12;
-  top: -120px;
-  left: -120px;
-  z-index: 0;
-}
-
-h1 {
-  font-size: 44px;
-  background: linear-gradient(90deg, #38bdf8, #22c55e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: float 3s ease-in-out infinite;
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.tag {
-  opacity: 0.8;
-  position: relative;
-  z-index: 1;
-}
-
-.card {
-  max-width: 700px;
-  margin: auto;
-  margin-top: 25px;
-  background: rgba(30, 41, 59, 0.7);
-  padding: 25px;
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 30px rgba(56,189,248,0.25);
-  position: relative;
-  z-index: 1;
-}
-
-textarea {
-  width: 100%;
-  height: 150px;
-  border-radius: 12px;
-  border: none;
-  padding: 15px;
-  font-size: 15px;
-  background: #0b1220;
-  color: white;
-  outline: none;
-}
-
-button {
-  margin-top: 15px;
-  padding: 13px 28px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(90deg, #22c55e, #38bdf8);
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px #38bdf8;
-}
-
-.result {
-  margin-top: 20px;
-  padding: 18px;
-  background: rgba(15, 23, 42, 0.9);
-  border-radius: 15px;
-  text-align: left;
-}
-
-.status {
-  margin-top: 10px;
-  opacity: 0.7;
-}
-
-.badge {
-  display: inline-block;
-  padding: 5px 12px;
-  background: #ef4444;
-  border-radius: 20px;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="glow"></div>
-
-<h1>🧠 TruthScan AI Pro</h1>
-<p class="tag">Detect emotional truth inside messages instantly 😳</p>
-
-<div class="badge">⚡ VIRAL AI TOOL</div>
-
-<div class="card">
-
-<textarea id="text" placeholder="Paste chat message here..."></textarea>
-
-<button onclick="analyze()">Scan Message 🔍</button>
-
-<p class="status" id="status"></p>
-
-<div class="result" id="result">
-Result will appear here...
-</div>
-
-<button onclick="copyLink()">📋 Copy & Share</button>
-
-</div>
-
-<script>
-
-function analyze() {
+setTimeout(() => {
 
   let text = document.getElementById("text").value.toLowerCase();
-  let score = 100;
 
-  document.getElementById("status").innerText = "AI scanning emotional patterns...";
+  // BASE SCORES
+  let honesty = 80;
+  let love = 70;
+  let sincerity = 75;
+  let emotionalClarity = 70;
+  let manipulationRisk = 20;
 
-  setTimeout(() => {
-    document.getElementById("status").innerText = "Detecting truth signals...";
-  }, 600);
+  // PATTERN ANALYSIS
+  const weak = ["maybe","not sure","idk","i guess","probably"];
+  const avoid = ["busy","later","talk later","not now","sleeping"];
+  const defensive = ["trust me","i swear","believe me","honestly"];
+  const cold = ["ok","k","lol","kk"];
 
-  setTimeout(() => {
-    document.getElementById("status").innerText = "Finalizing report...";
-  }, 1200);
+  weak.forEach(w => { if(text.includes(w)) { honesty -= 8; emotionalClarity -= 10; }});
+  avoid.forEach(w => { if(text.includes(w)) { sincerity -= 12; love -= 8; }});
+  defensive.forEach(w => { if(text.includes(w)) { manipulationRisk += 15; honesty -= 10; }});
+  cold.forEach(w => { if(text.includes(w)) { love -= 10; emotionalClarity -= 8; }});
 
-  setTimeout(() => {
+  if(text.length < 15) { sincerity -= 10; emotionalClarity -= 10; }
+  if(text.split(" ").length < 4) { honesty -= 8; }
 
-    // SMART PATTERN LOGIC
-    const weakSignals = ["maybe","not sure","idk","i guess","probably"];
-    const avoidSignals = ["busy","later","talk later","not now","sleeping"];
-    const defensiveSignals = ["trust me","i swear","believe me","honestly"];
-    const lowSignals = ["ok","k","lol","kk"];
+  // LIMIT RANGE 0-100
+  honesty = Math.max(0, Math.min(100, honesty));
+  love = Math.max(0, Math.min(100, love));
+  sincerity = Math.max(0, Math.min(100, sincerity));
+  emotionalClarity = Math.max(0, Math.min(100, emotionalClarity));
+  manipulationRisk = Math.max(0, Math.min(100, manipulationRisk));
 
-    weakSignals.forEach(w => { if(text.includes(w)) score -= 10; });
-    avoidSignals.forEach(w => { if(text.includes(w)) score -= 15; });
-    defensiveSignals.forEach(w => { if(text.includes(w)) score -= 20; });
-    lowSignals.forEach(w => { if(text.includes(w)) score -= 8; });
+  // FINAL RESULT STYLE
+  document.getElementById("result").innerHTML = `
+    <h3>🧠 AI Emotional Report</h3>
 
-    if(text.length < 15) score -= 15;
-    if(text.split(" ").length < 4) score -= 10;
+    <p>❤️ Love Level: <b>${love}%</b></p>
+    <p>💬 Sincerity: <b>${sincerity}%</b></p>
+    <p>🧠 Emotional Clarity: <b>${emotionalClarity}%</b></p>
+    <p>🤝 Honesty Score: <b>${honesty}%</b></p>
+    <p>⚠️ Manipulation Risk: <b>${manipulationRisk}%</b></p>
 
-    let status = "";
-    let insight = "";
+    <hr>
 
-    if(score > 75){
-      status = "Genuine Communication ✅";
-      insight = "Emotionally stable and natural message pattern.";
-    }
-    else if(score > 50){
-      status = "Mixed Signals 🤔";
-      insight = "Inconsistent emotional clarity detected.";
-    }
-    else if(score > 30){
-      status = "High Emotional Avoidance 🚨";
-      insight = "Possible distancing or avoidance behavior.";
-    }
-    else{
-      status = "Manipulation Risk ⚠️";
-      insight = "Strong defensive + evasive language detected.";
-    }
+    <p><b>Final AI Conclusion:</b></p>
+    <p>
+      ${
+        honesty > 75 && love > 70
+          ? "This message shows strong emotional sincerity and genuine intent ❤️"
+          : sincerity > 50 && manipulationRisk < 40
+          ? "Mixed emotional signals — some sincerity but unclear intent 🤔"
+          : "High emotional inconsistency detected — possible manipulation or emotional distance 🚨"
+      }
+    </p>
 
-    document.getElementById("result").innerHTML = `
-      <h3>Result</h3>
-      <p><b>Truth Score:</b> ${score}%</p>
-      <p><b>Status:</b> ${status}</p>
-      <p><b>AI Insight:</b> ${insight}</p>
-      <p style="opacity:0.6;">AI-based behavioral pattern analysis</p>
-    `;
+    <p style="opacity:0.6; font-size:12px;">
+      AI analysis based on emotional pattern detection (not guaranteed truth)
+    </p>
+  `;
 
-    document.getElementById("status").innerText = "Scan complete ✔";
+  document.getElementById("status").innerText = "Emotional report generated ✔";
 
-  }, 1800);
-}
-
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href);
-  alert("Link copied! Share it 🔥");
-}
-
-</script>
-
-</body>
-</html>
+}, 1800);
