@@ -1,85 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TruthScan AI - Master Prompt</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #000);
+  color: white;
+  padding: 30px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(30, 41, 59, 0.7);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(56,189,248,0.2);
+}
+
+h1 {
+  text-align: center;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+pre {
+  background: #0b1220;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧠 TruthScan AI Master Prompt</h1>
+
+<p>Copy this full prompt and use it in any AI tool to generate your viral website.</p>
+
+<button onclick="copyPrompt()">📋 Copy Prompt</button>
+
+<pre id="prompt">
+
 You are a senior frontend developer and viral SaaS product designer.
 
 Build a complete single-file website (HTML + CSS + JavaScript in one file) called:
 
 “TruthScan AI Pro”
 
-🚀 PURPOSE:
+PURPOSE:
 A viral AI-style emotional chat analyzer tool that users can paste messages into and get a psychological breakdown.
 
----
-
-🎨 DESIGN REQUIREMENTS:
+DESIGN REQUIREMENTS:
 - Ultra modern dark SaaS UI
 - Glassmorphism card design
 - Glowing animated background
 - Gradient neon buttons
-- Smooth hover animations
+- Smooth animations
 - Mobile responsive layout
-- TikTok viral aesthetic (clean, dramatic, futuristic)
+- TikTok viral aesthetic
 
----
-
-🧠 CORE FUNCTION:
+CORE FUNCTION:
 User pastes a chat message and clicks “Scan Message”.
 
-The tool must analyze the text using pattern-based logic and output:
+The tool analyzes text using pattern-based logic and outputs:
 
-📊 MULTI-PERCENT REPORT:
-- ❤️ Love Level (%)
-- 💬 Sincerity (%)
-- 🧠 Emotional Clarity (%)
-- 🤝 Honesty Score (%)
-- ⚠️ Manipulation Risk (%)
+MULTI-PERCENT REPORT:
+- Love Level (%)
+- Sincerity (%)
+- Emotional Clarity (%)
+- Honesty Score (%)
+- Manipulation Risk (%)
 
-Each should be calculated using keyword + pattern detection like:
+ANALYSIS LOGIC:
+Use keyword + pattern detection:
 - emotional words
 - avoidance words
 - defensive words
-- message length
-- uncertainty words
+- short messages
+- uncertainty phrases
 
----
-
-📢 OUTPUT STYLE:
-The result must look like an AI psychological report:
-
-- Clear sections
-- Bold percentages
+OUTPUT STYLE:
+- AI psychological report format
+- Clear percentages
 - Emotional labels
 - Final conclusion text
 
-Final conclusion must dynamically change:
-- High sincerity → “genuine emotional intent”
-- Mixed signals → “uncertain emotional clarity”
-- Low score → “possible manipulation or emotional distance”
+CONCLUSION RULES:
+- High love + honesty → genuine intent
+- Mixed signals → unclear emotional intent
+- Low scores → manipulation or emotional distance
 
----
+VIRAL FEATURES:
+- scanning animation (AI analyzing...)
+- delayed result reveal
+- copy/share button
+- “viral AI tool” badge
 
-⚡ VIRAL FEATURES:
-- Scanning animation (“Analyzing…”, “Detecting emotion…”)
-- Delayed result reveal (1–2 seconds suspense)
-- Copy/share button
-- “Viral AI Tool” badge
-- Emotional storytelling style results
-
----
-
-📱 PSYCHOLOGY REQUIREMENTS:
-The tool must trigger curiosity and emotion:
-- relationships
-- trust issues
+PSYCHOLOGY:
+Must feel emotional and relatable:
 - love confusion
-- emotional analysis
+- trust issues
+- relationship analysis
 
----
+OUTPUT:
+Single HTML file only. No external dependencies.
 
-💻 OUTPUT FORMAT:
-- Single HTML file only
-- No external dependencies
-- Fully working code
-- Clean, production-ready structure
+Make it look like a real AI startup product that can go viral on TikTok.
 
----
+</pre>
 
-Make it look like a real AI startup product that could go viral on TikTok and Instagram Reels.
+</div>
+
+<script>
+function copyPrompt() {
+  let text = document.getElementById("prompt").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Prompt copied successfully 🔥");
+}
+</script>
+
+</body>
+</html>
