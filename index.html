@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VibeCheck AI - Message & Image Analyzer</title>
-
+<title>VibeCheck AI - Analysis Tool</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -26,7 +25,7 @@ body{
   color:#38bdf8;
 }
 
-/* MAIN CARD */
+/* CARD */
 .card{
   max-width:800px;
   margin:20px auto;
@@ -63,7 +62,7 @@ button{
   cursor:pointer;
 }
 
-/* SCORE GRID */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -73,12 +72,27 @@ button{
 
 .box{
   background:#0b1220;
-  padding:12px;
-  border-radius:10px;
+  padding:15px;
+  border-radius:12px;
   text-align:center;
+  transition:0.3s;
 }
 
-/* RESULT BOX */
+.box:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px rgba(56,189,248,0.4);
+}
+
+.icon{
+  font-size:22px;
+}
+
+.value{
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* RESULT */
 .result{
   margin-top:15px;
   background:#0b1220;
@@ -95,7 +109,7 @@ img{
   display:none;
 }
 
-/* TYPING EFFECT */
+/* TYPING */
 .typing{
   display:inline-block;
   overflow:hidden;
@@ -119,32 +133,53 @@ img{
 
 <div class="header">
   <h1>🧠 VibeCheck AI</h1>
-  <p>Advanced Message and Image Analysis Tool</p>
+  <p>Advanced Message & Image Analysis</p>
 </div>
 
-<!-- MESSAGE ANALYZER -->
+<!-- MESSAGE TOOL -->
 <div class="card">
 
 <h2>Message Analysis</h2>
 
-<textarea id="text" placeholder="Enter or paste a message..."></textarea>
+<textarea id="text" placeholder="Enter message..."></textarea>
 
 <button onclick="analyzeText()">Analyze Message</button>
 
 <div class="grid">
-  <div class="box">Love<br><span id="love">--</span>%</div>
-  <div class="box">Sincerity<br><span id="sinc">--</span>%</div>
-  <div class="box">Honesty<br><span id="hon">--</span>%</div>
-  <div class="box">Risk<br><span id="risk">--</span>%</div>
+
+  <div class="box">
+    <div class="icon">❤️</div>
+    <div>Love</div>
+    <div class="value" id="love">--%</div>
+  </div>
+
+  <div class="box">
+    <div class="icon">💬</div>
+    <div>Sincerity</div>
+    <div class="value" id="sinc">--%</div>
+  </div>
+
+  <div class="box">
+    <div class="icon">🤝</div>
+    <div>Honesty</div>
+    <div class="value" id="hon">--%</div>
+  </div>
+
+  <div class="box">
+    <div class="icon">⚠️</div>
+    <div>Risk</div>
+    <div class="value" id="risk">--%</div>
+  </div>
+
 </div>
 
 <div class="result" id="textResult">
-Analysis result will appear here...
+Result will appear here...
 </div>
 
 </div>
 
-<!-- IMAGE ANALYZER -->
+<!-- IMAGE TOOL -->
 <div class="card">
 
 <h2>Image Analysis</h2>
@@ -156,7 +191,7 @@ Analysis result will appear here...
 <button onclick="analyzeImage()">Analyze Image</button>
 
 <div class="result" id="imgResult">
-Upload an image to begin analysis...
+Upload an image to analyze...
 </div>
 
 </div>
@@ -165,21 +200,25 @@ Upload an image to begin analysis...
 
 /* IMAGE PREVIEW */
 document.getElementById("imageInput").addEventListener("change", function(){
-
 let file = this.files[0];
 if(!file) return;
 
 let reader = new FileReader();
-
 reader.onload = function(e){
   let img = document.getElementById("preview");
   img.src = e.target.result;
   img.style.display = "block";
 };
-
 reader.readAsDataURL(file);
-
 });
+
+/* COLOR FUNCTION */
+function colorScore(id, value){
+let el = document.getElementById(id);
+if(value > 80) el.style.color="#22c55e";
+else if(value > 60) el.style.color="#38bdf8";
+else el.style.color="#ef4444";
+}
 
 /* MESSAGE ANALYSIS */
 function analyzeText(){
@@ -191,77 +230,79 @@ let sincerity = 75;
 let honesty = 85;
 let risk = 20;
 
-if(text.includes("love") || text.includes("miss")) love += 5;
-if(text.includes("busy")) sincerity -= 12;
-if(text.includes("idk") || text.includes("maybe")) sincerity -= 10;
-if(text.includes("trust me")) risk += 15;
+if(text.includes("love")||text.includes("miss")) love+=5;
+if(text.includes("busy")) sincerity-=12;
+if(text.includes("idk")||text.includes("maybe")) sincerity-=10;
+if(text.includes("trust me")) risk+=15;
 
-love = Math.max(0,Math.min(100,love));
-sincerity = Math.max(0,Math.min(100,sincerity));
-honesty = Math.max(0,Math.min(100,honesty));
-risk = Math.max(0,Math.min(100,risk));
+love=Math.max(0,Math.min(100,love));
+sincerity=Math.max(0,Math.min(100,sincerity));
+honesty=Math.max(0,Math.min(100,honesty));
+risk=Math.max(0,Math.min(100,risk));
 
-document.getElementById("love").innerText = love;
-document.getElementById("sinc").innerText = sincerity;
-document.getElementById("hon").innerText = honesty;
-document.getElementById("risk").innerText = risk;
+document.getElementById("love").innerText=love+"%";
+document.getElementById("sinc").innerText=sincerity+"%";
+document.getElementById("hon").innerText=honesty+"%";
+document.getElementById("risk").innerText=risk+"%";
 
-let report = "";
+colorScore("love",love);
+colorScore("sinc",sincerity);
+colorScore("hon",honesty);
+colorScore("risk",risk);
 
-if(love > 85 && sincerity > 80){
-  report = "The message reflects strong emotional connection and clear intent. The communication appears genuine and consistent.";
+let report="";
+
+if(love>85 && sincerity>80){
+report="The message shows strong emotional connection and genuine intent.";
 }
-else if(risk > 50){
-  report = "The message contains indicators of inconsistency or possible manipulation. Emotional clarity is limited.";
+else if(risk>50){
+report="The message indicates inconsistency or possible manipulation.";
 }
-else if(sincerity < 60){
-  report = "The message suggests emotional distance and a lack of openness. The sender may not be fully engaged.";
+else if(sincerity<60){
+report="The message suggests emotional distance and low engagement.";
 }
 else{
-  report = "The message presents mixed signals. A clear emotional conclusion cannot be determined with confidence.";
+report="The message contains mixed emotional signals.";
 }
 
-document.getElementById("textResult").innerHTML =
+document.getElementById("textResult").innerHTML=
 `<div class="typing">${report}</div>`;
-
 }
 
 /* IMAGE ANALYSIS */
 function analyzeImage(){
 
-let file = document.getElementById("imageInput").files[0];
+let file=document.getElementById("imageInput").files[0];
 
 if(!file){
-  alert("Please upload an image");
-  return;
+alert("Upload image first");
+return;
 }
 
-let score = 50;
+let score=50;
 
-if(file.size < 400000) score += 20;
-if(file.type === "image/png") score += 10;
-if(file.name.toLowerCase().includes("ai")) score += 15;
-if(file.name.toLowerCase().includes("generated")) score += 20;
+if(file.size<400000) score+=20;
+if(file.type==="image/png") score+=10;
+if(file.name.toLowerCase().includes("ai")) score+=15;
 
-score = Math.min(100, score);
+score=Math.min(100,score);
 
-let message = "";
+let msg="";
 
-if(score > 75){
-  message = "The image shows strong characteristics commonly associated with AI-generated content.";
+if(score>75){
+msg="Image likely contains AI-generated patterns.";
 }
-else if(score > 50){
-  message = "The image may contain artificial enhancements or generated elements.";
+else if(score>50){
+msg="Image may be artificially enhanced.";
 }
 else{
-  message = "The image appears natural with no strong indicators of synthetic generation.";
+msg="Image appears natural.";
 }
 
-document.getElementById("imgResult").innerHTML = `
+document.getElementById("imgResult").innerHTML=`
 <div class="typing">Processing image...</div>
-<p style="margin-top:10px;">Confidence: ${score}%</p>
-<p>${message}</p>
-<p style="opacity:0.6;font-size:12px;">Analysis based on visual pattern estimation</p>
+<p>Confidence: ${score}%</p>
+<p>${msg}</p>
 `;
 
 }
