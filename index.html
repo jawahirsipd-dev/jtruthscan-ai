@@ -2,144 +2,217 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AI Master Prompt Tool</title>
+<title>TruthScan AI Pro</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0f172a;
+  background: radial-gradient(circle at top, #0f172a, #000);
   color: white;
-  padding: 20px;
+  text-align: center;
+  padding: 30px;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
+/* Glow background */
+.glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: #38bdf8;
+  filter: blur(180px);
+  opacity: 0.12;
+  top: -120px;
+  left: -120px;
+  z-index: 0;
 }
 
 h1 {
-  text-align: center;
-  color: #38bdf8;
+  font-size: 44px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.tag {
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  max-width: 700px;
+  margin: auto;
+  margin-top: 25px;
+  background: rgba(30, 41, 59, 0.7);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(56,189,248,0.25);
+  position: relative;
+  z-index: 1;
 }
 
 textarea {
   width: 100%;
-  height: 420px;
-  border-radius: 10px;
+  height: 150px;
+  border-radius: 12px;
   border: none;
   padding: 15px;
-  font-size: 14px;
-  outline: none;
+  font-size: 15px;
   background: #0b1220;
   color: white;
+  outline: none;
 }
 
 button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
+  margin-top: 15px;
+  padding: 13px 28px;
   border: none;
-  border-radius: 10px;
-  background: #22c55e;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #16a34a;
+  transform: scale(1.08);
+  box-shadow: 0 0 25px #38bdf8;
 }
 
-.note {
-  margin-top: 10px;
-  font-size: 12px;
-  opacity: 0.7;
-  text-align: center;
+.result {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 15px;
+  text-align: left;
 }
+
+.status {
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  background: #ef4444;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="glow"></div>
 
-<h1>🧠 AI Master Prompt Tool</h1>
+<h1>🧠 TruthScan AI Pro</h1>
+<p class="tag">Detect emotional truth inside messages instantly 😳</p>
 
-<textarea id="text">
+<div class="badge">⚡ VIRAL AI TOOL</div>
 
-You are a senior frontend developer and UI/UX designer.
+<div class="card">
 
-Build a single-page website called "TruthScan AI Pro".
+<textarea id="text" placeholder="Paste chat message here..."></textarea>
 
-REQUIREMENTS:
-- Dark modern SaaS UI
-- Glassmorphism design
-- Viral TikTok style UI
-- Animated glowing background
-- Mobile responsive layout
+<button onclick="analyze()">Scan Message 🔍</button>
 
-CORE FUNCTION:
-User pastes chat message and clicks scan.
+<p class="status" id="status"></p>
 
-The system analyzes message using pattern-based logic and returns:
-
-- Love Level (%)
-- Sincerity (%)
-- Honesty (%)
-- Emotional Clarity (%)
-- Manipulation Risk (%)
-
-LOGIC RULES:
-- Detect emotional words
-- Detect avoidance words
-- Detect defensive words
-- Analyze message length
-- Analyze uncertainty phrases
-
-OUTPUT STYLE:
-- AI psychological report
-- Clear percentages
-- Emotional interpretation
-- Final conclusion
-
-CONCLUSION TYPES:
-- High love + honesty → genuine emotional intent
-- Mixed signals → unclear emotional behavior
-- Low scores → manipulation or emotional distance
-
-FEATURES:
-- scanning animation
-- delayed result reveal
-- copy/share button
-- viral AI badge
-
-Return ONLY full working HTML code.
-
-</textarea>
-
-<button onclick="copyText()">📋 Copy Prompt</button>
-
-<div class="note">
-If copy doesn’t work, manually select text and press Ctrl + C
+<div class="result" id="result">
+Result will appear here...
 </div>
+
+<button onclick="copyLink()">📋 Copy & Share</button>
 
 </div>
 
 <script>
-function copyText() {
-  let text = document.getElementById("text");
 
-  // simple reliable copy method
-  text.focus();
-  text.select();
-  document.execCommand("copy");
+function analyze() {
 
-  alert("Prompt copied successfully 🔥");
+  let text = document.getElementById("text").value.toLowerCase();
+  let score = 100;
+
+  document.getElementById("status").innerText = "AI scanning emotional patterns...";
+
+  setTimeout(() => {
+    document.getElementById("status").innerText = "Detecting truth signals...";
+  }, 600);
+
+  setTimeout(() => {
+    document.getElementById("status").innerText = "Finalizing report...";
+  }, 1200);
+
+  setTimeout(() => {
+
+    // SMART PATTERN LOGIC
+    const weakSignals = ["maybe","not sure","idk","i guess","probably"];
+    const avoidSignals = ["busy","later","talk later","not now","sleeping"];
+    const defensiveSignals = ["trust me","i swear","believe me","honestly"];
+    const lowSignals = ["ok","k","lol","kk"];
+
+    weakSignals.forEach(w => { if(text.includes(w)) score -= 10; });
+    avoidSignals.forEach(w => { if(text.includes(w)) score -= 15; });
+    defensiveSignals.forEach(w => { if(text.includes(w)) score -= 20; });
+    lowSignals.forEach(w => { if(text.includes(w)) score -= 8; });
+
+    if(text.length < 15) score -= 15;
+    if(text.split(" ").length < 4) score -= 10;
+
+    let status = "";
+    let insight = "";
+
+    if(score > 75){
+      status = "Genuine Communication ✅";
+      insight = "Emotionally stable and natural message pattern.";
+    }
+    else if(score > 50){
+      status = "Mixed Signals 🤔";
+      insight = "Inconsistent emotional clarity detected.";
+    }
+    else if(score > 30){
+      status = "High Emotional Avoidance 🚨";
+      insight = "Possible distancing or avoidance behavior.";
+    }
+    else{
+      status = "Manipulation Risk ⚠️";
+      insight = "Strong defensive + evasive language detected.";
+    }
+
+    document.getElementById("result").innerHTML = `
+      <h3>Result</h3>
+      <p><b>Truth Score:</b> ${score}%</p>
+      <p><b>Status:</b> ${status}</p>
+      <p><b>AI Insight:</b> ${insight}</p>
+      <p style="opacity:0.6;">AI-based behavioral pattern analysis</p>
+    `;
+
+    document.getElementById("status").innerText = "Scan complete ✔";
+
+  }, 1800);
 }
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied! Share it 🔥");
+}
+
 </script>
 
 </body>
