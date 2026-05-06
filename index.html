@@ -2,54 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VibeCheck AI - Truth & Image Detector</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VibeCheck AI - 3D Brain</title>
 
 <style>
 body {
   margin:0;
+  overflow:hidden;
   font-family:Arial;
-  background: radial-gradient(circle at top, #0f172a, #000);
+  background:#000;
   color:white;
-  text-align:center;
-  padding:20px;
 }
 
-.glow {
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:#38bdf8;
-  filter:blur(180px);
-  opacity:0.12;
-  top:-120px;
-  left:-120px;
-}
-
-h1 {
-  font-size:38px;
-  background:linear-gradient(90deg,#38bdf8,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.card {
-  max-width:800px;
-  margin:auto;
+/* UI OVERLAY */
+.ui {
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:10;
   background:rgba(30,41,59,0.7);
-  padding:20px;
-  border-radius:15px;
-  backdrop-filter:blur(12px);
-  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  width:300px;
+  backdrop-filter:blur(10px);
 }
 
 textarea {
   width:100%;
-  height:130px;
+  height:80px;
   border:none;
-  border-radius:10px;
-  padding:12px;
+  border-radius:8px;
+  padding:8px;
   background:#0b1220;
   color:white;
 }
@@ -57,147 +39,120 @@ textarea {
 button {
   width:100%;
   margin-top:10px;
-  padding:12px;
+  padding:10px;
   border:none;
-  border-radius:10px;
+  border-radius:8px;
   background:linear-gradient(90deg,#22c55e,#38bdf8);
   color:white;
   cursor:pointer;
 }
 
 .result {
-  margin-top:15px;
-  background:#0b1220;
-  padding:15px;
-  border-radius:10px;
-  text-align:left;
-}
-
-/* IMAGE INPUT */
-input[type="file"] {
   margin-top:10px;
-  width:100%;
+  font-size:13px;
+  opacity:0.9;
 }
 
-/* AD BOX */
-.ad {
-  margin:20px 0;
-  padding:15px;
-  background:#111827;
-  border-radius:10px;
-  opacity:0.7;
+/* CANVAS FULL SCREEN */
+canvas {
+  display:block;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="glow"></div>
+<div class="ui">
+<h3>🧠 VibeCheck AI</h3>
+<p style="font-size:12px;">3D Neural Brain System</p>
 
-<h1>🧠 VibeCheck AI</h1>
-<p>Emotion + Image Intelligence Tool</p>
+<textarea id="text" placeholder="Paste chat..."></textarea>
+<button onclick="analyze()">Analyze</button>
 
-<!-- AD -->
-<div class="ad">ADVERTISEMENT SPACE</div>
-
-<!-- TEXT ANALYZER -->
-<div class="card">
-
-<h2>💬 Message Analyzer</h2>
-
-<textarea id="text" placeholder="Paste chat message..."></textarea>
-
-<button onclick="analyzeText()">Analyze Message</button>
-
-<div class="result" id="textResult">Result will appear here...</div>
-
+<div class="result" id="result"></div>
 </div>
 
-<!-- IMAGE ANALYZER -->
-<div class="card">
-
-<h2>🖼 AI Image Detector</h2>
-
-<input type="file" id="imageInput">
-
-<button onclick="analyzeImage()">Analyze Image</button>
-
-<div class="result" id="imgResult">Upload image to analyze...</div>
-
-</div>
+<!-- THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
 <script>
 
-/* ---------------- TEXT ANALYSIS ---------------- */
-function analyzeText(){
+// SCENE
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
+
+// CAMERA
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 3;
+
+// RENDERER
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// BRAIN STYLE OBJECT (SPHERE = REALISTIC AI BRAIN LOOK)
+const geometry = new THREE.SphereGeometry(1.2, 64, 64);
+
+const material = new THREE.MeshStandardMaterial({
+  color: 0x38bdf8,
+  emissive: 0x0ea5e9,
+  wireframe: true
+});
+
+const brain = new THREE.Mesh(geometry, material);
+scene.add(brain);
+
+// LIGHTS
+const light = new THREE.PointLight(0xffffff, 1);
+light.position.set(5,5,5);
+scene.add(light);
+
+const ambient = new THREE.AmbientLight(0x404040);
+scene.add(ambient);
+
+// ANIMATION LOOP
+function animate(){
+  requestAnimationFrame(animate);
+
+  brain.rotation.y += 0.01;
+  brain.rotation.x += 0.005;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// RESIZE
+window.addEventListener("resize", ()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// AI LOGIC
+function analyze(){
 
 let text = document.getElementById("text").value.toLowerCase();
 
 let love = 80;
 let sincerity = 75;
-let honesty = 85;
-let risk = 20;
 
-if(text.includes("love") || text.includes("miss")) love += 5;
-if(text.includes("busy")) love -= 10;
-if(text.includes("maybe")) sincerity -= 10;
+if(text.includes("love")) love += 5;
+if(text.includes("busy")) sincerity -= 10;
 if(text.includes("idk")) sincerity -= 10;
-if(text.includes("trust me")) risk += 15;
 
-love = Math.max(0,love);
-sincerity = Math.max(0,sincerity);
-honesty = Math.max(0,honesty);
-risk = Math.max(0,risk);
-
-document.getElementById("textResult").innerHTML = `
-<h3>🧠 AI Report</h3>
-<p>❤️ Love: ${love}%</p>
-<p>💬 Sincerity: ${sincerity}%</p>
-<p>🤝 Honesty: ${honesty}%</p>
-<p>⚠️ Risk: ${risk}%</p>
-`;
-
+// CHANGE BRAIN COLOR BASED ON SCORE
+if(love > 85){
+  brain.material.color.set(0x22c55e);
+}
+else if(love < 60){
+  brain.material.color.set(0xef4444);
+}
+else {
+  brain.material.color.set(0x38bdf8);
 }
 
-/* ---------------- IMAGE ANALYSIS ---------------- */
-function analyzeImage(){
-
-let file = document.getElementById("imageInput").files[0];
-
-if(!file){
-  alert("Please upload an image");
-  return;
-}
-
-let score = 50;
-
-// FAKE AI LOGIC (VIRAL STYLE)
-if(file.size < 400000) score += 20;
-if(file.type === "image/png") score += 10;
-if(file.name.toLowerCase().includes("ai")) score += 15;
-if(file.name.toLowerCase().includes("generated")) score += 20;
-
-score = Math.min(100, score);
-
-let result = "";
-
-if(score > 75){
-  result = "🤖 Highly likely AI-generated image";
-}
-else if(score > 50){
-  result = "🤔 Possibly AI-generated or edited";
-}
-else{
-  result = "📷 Likely a real image";
-}
-
-document.getElementById("imgResult").innerHTML = `
-<h3>🧠 AI Image Report</h3>
-<p>Confidence Score: ${score}%</p>
-<p>${result}</p>
-<p style="opacity:0.6;font-size:12px;">Demo AI logic (not real ML model)</p>
-`;
+document.getElementById("result").innerHTML =
+"❤️ Love: " + love + "%<br>💬 Sincerity: " + sincerity + "%<br>🧠 Neural scan complete";
 
 }
 
