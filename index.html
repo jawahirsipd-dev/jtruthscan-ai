@@ -1,68 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<title> VibeCheck AI - Free Love & Message Analyzer</title>
+<title>VibeCheck AI - Truth & Image Detector</title>
 
-<meta name="description" content=" VibeCheck  AI Pro is a free AI tool that analyzes chat messages to detect love, sincerity, honesty, and emotional behavior patterns instantly.">
-<meta name="keywords" content="AI message analyzer, love detector tool, relationship AI, chat emotion analyzer, sincerity checker, emotional AI tool">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Open Graph -->
-<meta property="og:title" content="VibeCheck  AI Pro - AI Emotional Analyzer">
-<meta property="og:description" content="Analyze love, sincerity, honesty and emotional signals in messages using AI-style detection.">
-
-<!-- AdSense script (activate after approval) -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 <style>
 body {
   margin:0;
   font-family:Arial;
-  background:#0f172a;
+  background: radial-gradient(circle at top, #0f172a, #000);
   color:white;
+  text-align:center;
+  padding:20px;
 }
 
-header {
-  text-align:center;
-  padding:40px 20px;
-  background:#1e293b;
+.glow {
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:#38bdf8;
+  filter:blur(180px);
+  opacity:0.12;
+  top:-120px;
+  left:-120px;
 }
 
 h1 {
   font-size:38px;
-  color:#38bdf8;
+  background:linear-gradient(90deg,#38bdf8,#22c55e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-.container {
-  max-width:900px;
+.card {
+  max-width:800px;
   margin:auto;
+  background:rgba(30,41,59,0.7);
   padding:20px;
-}
-
-/* SEO TEXT BLOCKS */
-.box {
-  background:#1e293b;
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:20px;
-  line-height:1.6;
-}
-
-/* TOOL */
-.tool {
-  background:#1e293b;
-  padding:20px;
-  border-radius:12px;
+  border-radius:15px;
+  backdrop-filter:blur(12px);
+  margin-top:20px;
 }
 
 textarea {
   width:100%;
-  height:140px;
-  padding:12px;
+  height:130px;
   border:none;
   border-radius:10px;
+  padding:12px;
   background:#0b1220;
   color:white;
 }
@@ -83,16 +70,22 @@ button {
   background:#0b1220;
   padding:15px;
   border-radius:10px;
+  text-align:left;
 }
 
-/* ADS */
+/* IMAGE INPUT */
+input[type="file"] {
+  margin-top:10px;
+  width:100%;
+}
+
+/* AD BOX */
 .ad {
   margin:20px 0;
   padding:15px;
   background:#111827;
-  text-align:center;
   border-radius:10px;
-  opacity:0.8;
+  opacity:0.7;
 }
 </style>
 
@@ -100,53 +93,44 @@ button {
 
 <body>
 
-<header>
-  <h1>🧠 VibeCheck  AI Pro</h1>
-  <p>Free AI Emotional & Relationship Message Analyzer</p>
-</header>
+<div class="glow"></div>
 
-<div class="container">
+<h1>🧠 VibeCheck AI</h1>
+<p>Emotion + Image Intelligence Tool</p>
 
-<!-- SEO ARTICLE -->
-<div class="box">
-<h2>What is VibeCheck AI Pro?</h2>
-<p>
-VibeCheck AI Pro is a free AI-style emotional analysis tool that helps users understand the hidden meaning behind chat messages. It detects love level, sincerity, honesty, and emotional patterns in conversations.
-</p>
-</div>
+<!-- AD -->
+<div class="ad">ADVERTISEMENT SPACE</div>
 
-<!-- TOP AD -->
-<div class="ad">ADVERTISEMENT</div>
+<!-- TEXT ANALYZER -->
+<div class="card">
 
-<!-- TOOL -->
-<div class="tool">
+<h2>💬 Message Analyzer</h2>
 
-<h2>🧠 AI Message Analyzer</h2>
+<textarea id="text" placeholder="Paste chat message..."></textarea>
 
-<textarea id="text" placeholder="Paste chat message here..."></textarea>
+<button onclick="analyzeText()">Analyze Message</button>
 
-<button onclick="analyze()">Analyze Message</button>
-
-<div class="result" id="result">Result will appear here...</div>
+<div class="result" id="textResult">Result will appear here...</div>
 
 </div>
 
-<!-- SEO ARTICLE -->
-<div class="box">
-<h2>How This AI Tool Works</h2>
-<p>
-The system scans text patterns, emotional words, and communication style. It then calculates percentages for love, sincerity, honesty, and emotional clarity.
-</p>
-</div>
+<!-- IMAGE ANALYZER -->
+<div class="card">
 
-<!-- BOTTOM AD -->
-<div class="ad">ADVERTISEMENT</div>
+<h2>🖼 AI Image Detector</h2>
+
+<input type="file" id="imageInput">
+
+<button onclick="analyzeImage()">Analyze Image</button>
+
+<div class="result" id="imgResult">Upload image to analyze...</div>
 
 </div>
 
 <script>
 
-function analyze(){
+/* ---------------- TEXT ANALYSIS ---------------- */
+function analyzeText(){
 
 let text = document.getElementById("text").value.toLowerCase();
 
@@ -158,6 +142,7 @@ let risk = 20;
 if(text.includes("love") || text.includes("miss")) love += 5;
 if(text.includes("busy")) love -= 10;
 if(text.includes("maybe")) sincerity -= 10;
+if(text.includes("idk")) sincerity -= 10;
 if(text.includes("trust me")) risk += 15;
 
 love = Math.max(0,love);
@@ -165,12 +150,53 @@ sincerity = Math.max(0,sincerity);
 honesty = Math.max(0,honesty);
 risk = Math.max(0,risk);
 
-document.getElementById("result").innerHTML = `
+document.getElementById("textResult").innerHTML = `
 <h3>🧠 AI Report</h3>
-<p>❤️ Love Level: ${love}%</p>
+<p>❤️ Love: ${love}%</p>
 <p>💬 Sincerity: ${sincerity}%</p>
 <p>🤝 Honesty: ${honesty}%</p>
 <p>⚠️ Risk: ${risk}%</p>
+`;
+
+}
+
+/* ---------------- IMAGE ANALYSIS ---------------- */
+function analyzeImage(){
+
+let file = document.getElementById("imageInput").files[0];
+
+if(!file){
+  alert("Please upload an image");
+  return;
+}
+
+let score = 50;
+
+// FAKE AI LOGIC (VIRAL STYLE)
+if(file.size < 400000) score += 20;
+if(file.type === "image/png") score += 10;
+if(file.name.toLowerCase().includes("ai")) score += 15;
+if(file.name.toLowerCase().includes("generated")) score += 20;
+
+score = Math.min(100, score);
+
+let result = "";
+
+if(score > 75){
+  result = "🤖 Highly likely AI-generated image";
+}
+else if(score > 50){
+  result = "🤔 Possibly AI-generated or edited";
+}
+else{
+  result = "📷 Likely a real image";
+}
+
+document.getElementById("imgResult").innerHTML = `
+<h3>🧠 AI Image Report</h3>
+<p>Confidence Score: ${score}%</p>
+<p>${result}</p>
+<p style="opacity:0.6;font-size:12px;">Demo AI logic (not real ML model)</p>
 `;
 
 }
