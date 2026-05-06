@@ -5,176 +5,169 @@
 <title>TruthScan AI</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0f172a, #020617);
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
+  text-align: center;
+  padding: 30px;
+}
 
-  /* floating glow background */
-  .bg-glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: #38bdf8;
-    filter: blur(150px);
-    opacity: 0.15;
-    top: -100px;
-    left: -100px;
-    z-index: 0;
-  }
+/* Glow background */
+.glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: #38bdf8;
+  filter: blur(150px);
+  opacity: 0.15;
+  top: -100px;
+  left: -100px;
+}
 
-  h1 {
-    font-size: 45px;
-    margin-top: 60px;
-    background: linear-gradient(90deg, #38bdf8, #22c55e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 2s infinite alternate;
-  }
+h1 {
+  font-size: 42px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  @keyframes glow {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-  }
+.tag {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
 
-  .tagline {
-    opacity: 0.7;
-    margin-bottom: 20px;
-  }
+.card {
+  max-width: 650px;
+  margin: auto;
+  background: rgba(30, 41, 59, 0.7);
+  padding: 25px;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(56,189,248,0.2);
+}
 
-  .card {
-    position: relative;
-    z-index: 1;
-    width: 90%;
-    max-width: 650px;
-    margin: auto;
-    margin-top: 30px;
-    padding: 25px;
-    background: rgba(30, 41, 59, 0.7);
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 0 25px rgba(56,189,248,0.2);
-  }
+textarea {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  border: none;
+  padding: 15px;
+  background: #0b1220;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
 
-  textarea {
-    width: 100%;
-    height: 150px;
-    border-radius: 12px;
-    border: none;
-    padding: 15px;
-    font-size: 16px;
-    background: #0b1220;
-    color: white;
-    outline: none;
-  }
+button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  button {
-    margin-top: 15px;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #22c55e, #38bdf8);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #38bdf8;
+}
 
-  button:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 20px rgba(56,189,248,0.4);
-  }
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 12px;
+  text-align: left;
+}
 
-  .result {
-    margin-top: 25px;
-    padding: 20px;
-    background: rgba(15, 23, 42, 0.8);
-    border-radius: 15px;
-    text-align: left;
-  }
+.status {
+  margin-top: 10px;
+  opacity: 0.7;
+  font-size: 14px;
+}
 
-  .badge {
-    display: inline-block;
-    padding: 5px 12px;
-    background: #1d4ed8;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 10px;
-  }
-
-  .score {
-    font-size: 22px;
-    font-weight: bold;
-  }
-
-  .green { color: #22c55e; }
-  .yellow { color: #facc15; }
-  .red { color: #ef4444; }
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #ef4444;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 10px;
+}
 
 </style>
 </head>
 
 <body>
 
-<div class="bg-glow"></div>
+<div class="glow"></div>
 
 <h1>🧠 TruthScan AI</h1>
-<p class="tagline">Detect emotional truth inside messages instantly</p>
-<div class="badge">⚡ Viral AI Tool</div>
+<p class="tag">Paste any chat and reveal hidden truth instantly 😳</p>
+
+<div class="badge">⚡ VIRAL AI TOOL</div>
 
 <div class="card">
 
   <textarea id="text" placeholder="Paste chat message here..."></textarea>
 
-  <br>
-  <button onclick="analyze()">Scan Message</button>
+  <button onclick="analyze()">Scan Message 🔍</button>
+
+  <p class="status" id="status"></p>
 
   <div class="result" id="result">
     Result will appear here...
   </div>
 
+  <button onclick="copyLink()">📋 Copy & Share</button>
+
 </div>
 
 <script>
+
 function analyze() {
 
-  let text = document.getElementById("text").value.toLowerCase();
-  let score = 85;
+  document.getElementById("status").innerText = "AI scanning message...";
 
-  if (text.includes("sorry")) score -= 10;
-  if (text.includes("busy")) score -= 15;
-  if (text.includes("maybe")) score -= 10;
-  if (text.includes("trust me")) score -= 20;
-  if (text.includes("later")) score -= 10;
-  if (text.includes("i swear")) score -= 25;
+  setTimeout(() => {
 
-  let status = "";
-  let color = "";
+    let text = document.getElementById("text").value.toLowerCase();
+    let score = 85;
 
-  if (score > 70) {
-    status = "Likely Honest ✅";
-    color = "green";
-  } else if (score > 40) {
-    status = "Suspicious 🤔";
-    color = "yellow";
-  } else {
-    status = "High Chance of Dishonesty 🚩";
-    color = "red";
-  }
+    if (text.includes("sorry")) score -= 10;
+    if (text.includes("busy")) score -= 15;
+    if (text.includes("trust me")) score -= 20;
+    if (text.includes("later")) score -= 10;
+    if (text.includes("i swear")) score -= 25;
 
-  document.getElementById("result").innerHTML = `
-    <div class="score ${color}">
-      Truth Score: ${score}%
-    </div>
-    <p><b>AI Analysis:</b> ${status}</p>
-    <p><b>Insight:</b> Emotional inconsistency detected in message pattern.</p>
-    <p><b>Suggested Reply:</b> "Just be honest, I respect the truth more."</p>
-  `;
+    let result = "";
+
+    if (score > 70) result = "Likely Honest ✅";
+    else if (score > 40) result = "Suspicious 🤔";
+    else result = "High Chance of Dishonesty 🚩";
+
+    document.getElementById("result").innerHTML = `
+      <h3>Result</h3>
+      <p><b>Truth Score:</b> ${score}%</p>
+      <p><b>Status:</b> ${result}</p>
+      <p style="opacity:0.7;">AI analysis based on message patterns</p>
+    `;
+
+    document.getElementById("status").innerText = "Scan complete ✔";
+
+  }, 1500);
 }
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied! Share it 🔥");
+}
+
 </script>
 
 </body>
