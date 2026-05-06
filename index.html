@@ -2,52 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TruthScan AI - Master Prompt</title>
+<title>AI Prompt Tool</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #000);
+  background: #0f172a;
   color: white;
   padding: 30px;
 }
 
-.container {
+.box {
   max-width: 900px;
   margin: auto;
   background: rgba(30, 41, 59, 0.7);
-  padding: 25px;
+  padding: 20px;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 25px rgba(56,189,248,0.2);
 }
 
 h1 {
   text-align: center;
-  background: linear-gradient(90deg, #38bdf8, #22c55e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #38bdf8;
 }
 
 button {
-  margin-top: 20px;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  background: #22c55e;
   color: white;
   cursor: pointer;
-  font-size: 15px;
+  margin-bottom: 15px;
 }
 
-pre {
+textarea {
+  width: 100%;
+  height: 400px;
   background: #0b1220;
-  padding: 20px;
+  color: white;
+  border: none;
+  padding: 15px;
   border-radius: 10px;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  line-height: 1.5;
+  font-size: 14px;
 }
 
 </style>
@@ -55,91 +52,52 @@ pre {
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<h1>🧠 TruthScan AI Master Prompt</h1>
+<h1>🧠 TruthScan AI Prompt</h1>
 
-<p>Copy this full prompt and use it in any AI tool to generate your viral website.</p>
+<button onclick="copyText()">📋 Copy Prompt</button>
 
-<button onclick="copyPrompt()">📋 Copy Prompt</button>
+<textarea id="prompt">
 
-<pre id="prompt">
+You are a senior frontend developer.
 
-You are a senior frontend developer and viral SaaS product designer.
+Build a single-page HTML website called "TruthScan AI Pro".
 
-Build a complete single-file website (HTML + CSS + JavaScript in one file) called:
+FEATURES:
+- Dark SaaS UI
+- Glassmorphism design
+- Chat input box
+- Scan button
+- AI emotional analysis output
 
-“TruthScan AI Pro”
+OUTPUT MUST INCLUDE:
+- Love %
+- Sincerity %
+- Honesty %
+- Emotional clarity %
+- Manipulation risk %
 
-PURPOSE:
-A viral AI-style emotional chat analyzer tool that users can paste messages into and get a psychological breakdown.
+Use pattern-based logic (keywords, message length, tone).
 
-DESIGN REQUIREMENTS:
-- Ultra modern dark SaaS UI
-- Glassmorphism card design
-- Glowing animated background
-- Gradient neon buttons
-- Smooth animations
-- Mobile responsive layout
-- TikTok viral aesthetic
+Make it look like a viral AI tool for TikTok.
 
-CORE FUNCTION:
-User pastes a chat message and clicks “Scan Message”.
+Return full working HTML only.
 
-The tool analyzes text using pattern-based logic and outputs:
-
-MULTI-PERCENT REPORT:
-- Love Level (%)
-- Sincerity (%)
-- Emotional Clarity (%)
-- Honesty Score (%)
-- Manipulation Risk (%)
-
-ANALYSIS LOGIC:
-Use keyword + pattern detection:
-- emotional words
-- avoidance words
-- defensive words
-- short messages
-- uncertainty phrases
-
-OUTPUT STYLE:
-- AI psychological report format
-- Clear percentages
-- Emotional labels
-- Final conclusion text
-
-CONCLUSION RULES:
-- High love + honesty → genuine intent
-- Mixed signals → unclear emotional intent
-- Low scores → manipulation or emotional distance
-
-VIRAL FEATURES:
-- scanning animation (AI analyzing...)
-- delayed result reveal
-- copy/share button
-- “viral AI tool” badge
-
-PSYCHOLOGY:
-Must feel emotional and relatable:
-- love confusion
-- trust issues
-- relationship analysis
-
-OUTPUT:
-Single HTML file only. No external dependencies.
-
-Make it look like a real AI startup product that can go viral on TikTok.
-
-</pre>
+</textarea>
 
 </div>
 
 <script>
-function copyPrompt() {
-  let text = document.getElementById("prompt").innerText;
-  navigator.clipboard.writeText(text);
-  alert("Prompt copied successfully 🔥");
+function copyText() {
+  let text = document.getElementById("prompt");
+
+  text.select();
+  text.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(text.value)
+    .then(() => alert("Copied successfully 🔥"))
+    .catch(() => alert("Copy failed — please select manually"));
 }
 </script>
 
