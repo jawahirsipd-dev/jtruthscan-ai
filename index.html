@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VibeCheck AI - Analysis Tool</title>
+<title>VibeCheck AI - 10 Tools</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -16,115 +16,64 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:40px 20px;
-  background:linear-gradient(90deg,#0f172a,#1e293b);
-}
-
-.header h1{
-  font-size:38px;
-  color:#38bdf8;
-}
-
-/* CARD */
-.card{
-  max-width:800px;
-  margin:20px auto;
+  padding:30px;
   background:#111827;
-  border-radius:15px;
-  padding:20px;
 }
 
-/* INPUT */
-textarea{
-  width:100%;
-  height:120px;
+/* NAV */
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  padding:10px;
+}
+
+.nav button{
+  padding:8px 12px;
   border:none;
-  border-radius:10px;
-  padding:12px;
-  background:#0b1220;
-  color:white;
-}
-
-input[type="file"]{
-  width:100%;
-  margin-top:10px;
-}
-
-/* BUTTON */
-button{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  background:linear-gradient(90deg,#22c55e,#38bdf8);
+  border-radius:8px;
+  background:#1e293b;
   color:white;
   cursor:pointer;
 }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:15px;
-}
-
-.box{
-  background:#0b1220;
-  padding:15px;
+/* TOOL CARD */
+.tool{
+  max-width:800px;
+  margin:20px auto;
+  background:#111827;
+  padding:20px;
   border-radius:12px;
-  text-align:center;
-  transition:0.3s;
 }
 
-.box:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 15px rgba(56,189,248,0.4);
-}
-
-.icon{
-  font-size:22px;
-}
-
-.value{
-  font-size:18px;
-  font-weight:bold;
-}
-
-/* RESULT */
-.result{
-  margin-top:15px;
+/* INPUT */
+textarea,input{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
   background:#0b1220;
-  padding:15px;
-  border-radius:10px;
-  min-height:60px;
+  color:white;
 }
 
-/* IMAGE */
-img{
+button.action{
   width:100%;
   margin-top:10px;
-  border-radius:10px;
-  display:none;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#38bdf8;
+  color:black;
+  cursor:pointer;
 }
 
-/* TYPING */
-.typing{
-  display:inline-block;
-  overflow:hidden;
-  border-right:2px solid white;
-  white-space:nowrap;
-  animation:typing 2s steps(40,end), blink .7s infinite;
-}
-
-@keyframes typing{
-  from{width:0}
-  to{width:100%}
-}
-
-@keyframes blink{
-  50%{border-color:transparent}
+.result{
+  margin-top:10px;
+  background:#0b1220;
+  padding:10px;
+  border-radius:8px;
 }
 </style>
 </head>
@@ -132,179 +81,152 @@ img{
 <body>
 
 <div class="header">
-  <h1>🧠 VibeCheck AI</h1>
-  <p>Advanced Message & Image Analysis</p>
+<h1>🧠 VibeCheck AI</h1>
+<p>All-in-One AI Relationship Toolkit</p>
 </div>
 
-<!-- MESSAGE TOOL -->
-<div class="card">
-
-<h2>Message Analysis</h2>
-
-<textarea id="text" placeholder="Enter message..."></textarea>
-
-<button onclick="analyzeText()">Analyze Message</button>
-
-<div class="grid">
-
-  <div class="box">
-    <div class="icon">❤️</div>
-    <div>Love</div>
-    <div class="value" id="love">--%</div>
-  </div>
-
-  <div class="box">
-    <div class="icon">💬</div>
-    <div>Sincerity</div>
-    <div class="value" id="sinc">--%</div>
-  </div>
-
-  <div class="box">
-    <div class="icon">🤝</div>
-    <div>Honesty</div>
-    <div class="value" id="hon">--%</div>
-  </div>
-
-  <div class="box">
-    <div class="icon">⚠️</div>
-    <div>Risk</div>
-    <div class="value" id="risk">--%</div>
-  </div>
-
+<div class="nav">
+<button onclick="show('t1')">Message</button>
+<button onclick="show('t2')">Love</button>
+<button onclick="show('t3')">Emotion</button>
+<button onclick="show('t4')">Red Flag</button>
+<button onclick="show('t5')">Lie</button>
+<button onclick="show('t6')">Reply</button>
+<button onclick="show('t7')">Image</button>
+<button onclick="show('t8')">Bio</button>
+<button onclick="show('t9')">Pickup</button>
+<button onclick="show('t10')">Personality</button>
 </div>
 
-<div class="result" id="textResult">
-Result will appear here...
+<!-- TOOL 1 -->
+<div id="t1" class="tool">
+<h3>Message Analyzer</h3>
+<textarea id="msg"></textarea>
+<button class="action" onclick="analyzeMsg()">Analyze</button>
+<div class="result" id="r1"></div>
 </div>
 
+<!-- TOOL 2 -->
+<div id="t2" class="tool" style="display:none;">
+<h3>Love Calculator</h3>
+<input id="name1" placeholder="Name 1">
+<input id="name2" placeholder="Name 2">
+<button class="action" onclick="loveCalc()">Calculate</button>
+<div class="result" id="r2"></div>
 </div>
 
-<!-- IMAGE TOOL -->
-<div class="card">
-
-<h2>Image Analysis</h2>
-
-<input type="file" id="imageInput" accept="image/*">
-
-<img id="preview">
-
-<button onclick="analyzeImage()">Analyze Image</button>
-
-<div class="result" id="imgResult">
-Upload an image to analyze...
+<!-- TOOL 3 -->
+<div id="t3" class="tool" style="display:none;">
+<h3>Emotion Detector</h3>
+<textarea id="emo"></textarea>
+<button class="action" onclick="emotion()">Detect</button>
+<div class="result" id="r3"></div>
 </div>
 
+<!-- TOOL 4 -->
+<div id="t4" class="tool" style="display:none;">
+<h3>Red Flag Detector</h3>
+<textarea id="rf"></textarea>
+<button class="action" onclick="redFlag()">Check</button>
+<div class="result" id="r4"></div>
+</div>
+
+<!-- TOOL 5 -->
+<div id="t5" class="tool" style="display:none;">
+<h3>Lie Detector</h3>
+<textarea id="lie"></textarea>
+<button class="action" onclick="lieCheck()">Analyze</button>
+<div class="result" id="r5"></div>
+</div>
+
+<!-- TOOL 6 -->
+<div id="t6" class="tool" style="display:none;">
+<h3>Reply Generator</h3>
+<textarea id="reply"></textarea>
+<button class="action" onclick="replyGen()">Generate</button>
+<div class="result" id="r6"></div>
+</div>
+
+<!-- TOOL 7 -->
+<div id="t7" class="tool" style="display:none;">
+<h3>Image Detector</h3>
+<input type="file" id="img">
+<button class="action" onclick="imgCheck()">Analyze</button>
+<div class="result" id="r7"></div>
+</div>
+
+<!-- TOOL 8 -->
+<div id="t8" class="tool" style="display:none;">
+<h3>Bio Generator</h3>
+<input id="bio">
+<button class="action" onclick="bioGen()">Generate</button>
+<div class="result" id="r8"></div>
+</div>
+
+<!-- TOOL 9 -->
+<div id="t9" class="tool" style="display:none;">
+<h3>Pickup Lines</h3>
+<button class="action" onclick="pickup()">Generate</button>
+<div class="result" id="r9"></div>
+</div>
+
+<!-- TOOL 10 -->
+<div id="t10" class="tool" style="display:none;">
+<h3>Personality Insight</h3>
+<textarea id="pers"></textarea>
+<button class="action" onclick="personality()">Analyze</button>
+<div class="result" id="r10"></div>
 </div>
 
 <script>
 
-/* IMAGE PREVIEW */
-document.getElementById("imageInput").addEventListener("change", function(){
-let file = this.files[0];
-if(!file) return;
-
-let reader = new FileReader();
-reader.onload = function(e){
-  let img = document.getElementById("preview");
-  img.src = e.target.result;
-  img.style.display = "block";
-};
-reader.readAsDataURL(file);
-});
-
-/* COLOR FUNCTION */
-function colorScore(id, value){
-let el = document.getElementById(id);
-if(value > 80) el.style.color="#22c55e";
-else if(value > 60) el.style.color="#38bdf8";
-else el.style.color="#ef4444";
+/* NAVIGATION */
+function show(id){
+document.querySelectorAll(".tool").forEach(t=>t.style.display="none");
+document.getElementById(id).style.display="block";
 }
 
-/* MESSAGE ANALYSIS */
-function analyzeText(){
-
-let text = document.getElementById("text").value.toLowerCase();
-
-let love = 80;
-let sincerity = 75;
-let honesty = 85;
-let risk = 20;
-
-if(text.includes("love")||text.includes("miss")) love+=5;
-if(text.includes("busy")) sincerity-=12;
-if(text.includes("idk")||text.includes("maybe")) sincerity-=10;
-if(text.includes("trust me")) risk+=15;
-
-love=Math.max(0,Math.min(100,love));
-sincerity=Math.max(0,Math.min(100,sincerity));
-honesty=Math.max(0,Math.min(100,honesty));
-risk=Math.max(0,Math.min(100,risk));
-
-document.getElementById("love").innerText=love+"%";
-document.getElementById("sinc").innerText=sincerity+"%";
-document.getElementById("hon").innerText=honesty+"%";
-document.getElementById("risk").innerText=risk+"%";
-
-colorScore("love",love);
-colorScore("sinc",sincerity);
-colorScore("hon",honesty);
-colorScore("risk",risk);
-
-let report="";
-
-if(love>85 && sincerity>80){
-report="The message shows strong emotional connection and genuine intent.";
-}
-else if(risk>50){
-report="The message indicates inconsistency or possible manipulation.";
-}
-else if(sincerity<60){
-report="The message suggests emotional distance and low engagement.";
-}
-else{
-report="The message contains mixed emotional signals.";
+/* TOOL LOGIC */
+function analyzeMsg(){
+let t=msg.value.toLowerCase();
+r1.innerText = t.includes("love") ? "Strong emotional interest detected." : "Mixed signals.";
 }
 
-document.getElementById("textResult").innerHTML=
-`<div class="typing">${report}</div>`;
+function loveCalc(){
+let score=Math.floor(Math.random()*100);
+r2.innerText="Compatibility: "+score+"%";
 }
 
-/* IMAGE ANALYSIS */
-function analyzeImage(){
-
-let file=document.getElementById("imageInput").files[0];
-
-if(!file){
-alert("Upload image first");
-return;
+function emotion(){
+r3.innerText="Detected emotion: Neutral / Slightly Positive";
 }
 
-let score=50;
-
-if(file.size<400000) score+=20;
-if(file.type==="image/png") score+=10;
-if(file.name.toLowerCase().includes("ai")) score+=15;
-
-score=Math.min(100,score);
-
-let msg="";
-
-if(score>75){
-msg="Image likely contains AI-generated patterns.";
-}
-else if(score>50){
-msg="Image may be artificially enhanced.";
-}
-else{
-msg="Image appears natural.";
+function redFlag(){
+r4.innerText="Possible red flag detected.";
 }
 
-document.getElementById("imgResult").innerHTML=`
-<div class="typing">Processing image...</div>
-<p>Confidence: ${score}%</p>
-<p>${msg}</p>
-`;
+function lieCheck(){
+r5.innerText="Statement shows inconsistencies.";
+}
 
+function replyGen(){
+r6.innerText="You can reply: 'Sounds good, let's talk later.'";
+}
+
+function imgCheck(){
+r7.innerText="Image appears AI-generated (demo logic).";
+}
+
+function bioGen(){
+r8.innerText="Creative bio: Living life with purpose.";
+}
+
+function pickup(){
+r9.innerText="Are you AI? Because you just analyzed my heart.";
+}
+
+function personality(){
+r10.innerText="Personality: Thoughtful and observant.";
 }
 
 </script>
