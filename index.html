@@ -2,28 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TruthScan AI</title>
+<title>TruthScan AI Pro</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  background: radial-gradient(circle at top, #0f172a, #000);
   color: white;
   text-align: center;
-  padding: 30px;
+  padding: 25px;
 }
 
-/* Glow background */
 .glow {
   position: fixed;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background: #38bdf8;
-  filter: blur(150px);
-  opacity: 0.15;
-  top: -100px;
-  left: -100px;
+  filter: blur(180px);
+  opacity: 0.12;
+  top: -120px;
+  left: -120px;
 }
 
 h1 {
@@ -33,30 +32,26 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-.tag {
-  opacity: 0.8;
-  margin-bottom: 20px;
-}
-
 .card {
-  max-width: 650px;
+  max-width: 700px;
   margin: auto;
+  margin-top: 20px;
   background: rgba(30, 41, 59, 0.7);
   padding: 25px;
   border-radius: 18px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 0 25px rgba(56,189,248,0.2);
 }
 
 textarea {
   width: 100%;
-  height: 140px;
+  height: 150px;
   border-radius: 12px;
   border: none;
   padding: 15px;
+  font-size: 15px;
   background: #0b1220;
   color: white;
-  font-size: 15px;
   outline: none;
 }
 
@@ -80,7 +75,7 @@ button:hover {
 .result {
   margin-top: 20px;
   padding: 15px;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.9);
   border-radius: 12px;
   text-align: left;
 }
@@ -88,18 +83,7 @@ button:hover {
 .status {
   margin-top: 10px;
   opacity: 0.7;
-  font-size: 14px;
 }
-
-.badge {
-  display: inline-block;
-  padding: 5px 10px;
-  background: #ef4444;
-  border-radius: 20px;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
 </style>
 </head>
 
@@ -107,24 +91,20 @@ button:hover {
 
 <div class="glow"></div>
 
-<h1>🧠 TruthScan AI</h1>
-<p class="tag">Paste any chat and reveal hidden truth instantly 😳</p>
-
-<div class="badge">⚡ VIRAL AI TOOL</div>
+<h1>🧠 TruthScan AI Pro</h1>
+<p style="opacity:0.8;">Emotional & Relationship Message Analyzer</p>
 
 <div class="card">
 
-  <textarea id="text" placeholder="Paste chat message here..."></textarea>
+<textarea id="text" placeholder="Paste chat message here..."></textarea>
 
-  <button onclick="analyze()">Scan Message 🔍</button>
+<button onclick="analyze()">Scan Message 🔍</button>
 
-  <p class="status" id="status"></p>
+<p class="status" id="status"></p>
 
-  <div class="result" id="result">
-    Result will appear here...
-  </div>
-
-  <button onclick="copyLink()">📋 Copy & Share</button>
+<div class="result" id="result">
+Result will appear here...
+</div>
 
 </div>
 
@@ -132,40 +112,101 @@ button:hover {
 
 function analyze() {
 
-  document.getElementById("status").innerText = "AI scanning message...";
+let text = document.getElementById("text").value.toLowerCase();
 
-  setTimeout(() => {
+// START VALUES
+let love = 80;
+let sincerity = 75;
+let honesty = 85;
+let clarity = 70;
+let risk = 20;
 
-    let text = document.getElementById("text").value.toLowerCase();
-    let score = 85;
+// PATTERNS
+const weak = ["maybe","not sure","idk","i guess","probably"];
+const avoid = ["busy","later","talk later","sleeping"];
+const defend = ["trust me","i swear","honestly","believe me"];
+const cold = ["ok","k","lol","kk"];
 
-    if (text.includes("sorry")) score -= 10;
-    if (text.includes("busy")) score -= 15;
-    if (text.includes("trust me")) score -= 20;
-    if (text.includes("later")) score -= 10;
-    if (text.includes("i swear")) score -= 25;
+weak.forEach(w => {
+  if(text.includes(w)) {
+    sincerity -= 10;
+    clarity -= 10;
+  }
+});
 
-    let result = "";
+avoid.forEach(w => {
+  if(text.includes(w)) {
+    love -= 12;
+    sincerity -= 8;
+  }
+});
 
-    if (score > 70) result = "Likely Honest ✅";
-    else if (score > 40) result = "Suspicious 🤔";
-    else result = "High Chance of Dishonesty 🚩";
+defend.forEach(w => {
+  if(text.includes(w)) {
+    risk += 15;
+    honesty -= 10;
+  }
+});
 
-    document.getElementById("result").innerHTML = `
-      <h3>Result</h3>
-      <p><b>Truth Score:</b> ${score}%</p>
-      <p><b>Status:</b> ${result}</p>
-      <p style="opacity:0.7;">AI analysis based on message patterns</p>
-    `;
+cold.forEach(w => {
+  if(text.includes(w)) {
+    love -= 10;
+    clarity -= 8;
+  }
+});
 
-    document.getElementById("status").innerText = "Scan complete ✔";
-
-  }, 1500);
+// LENGTH CHECK
+if(text.length < 15) {
+  sincerity -= 10;
+  clarity -= 10;
 }
 
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href);
-  alert("Link copied! Share it 🔥");
+if(text.split(" ").length < 4) {
+  honesty -= 8;
+}
+
+// LIMIT RANGE
+love = Math.max(0, Math.min(100, love));
+sincerity = Math.max(0, Math.min(100, sincerity));
+honesty = Math.max(0, Math.min(100, honesty));
+clarity = Math.max(0, Math.min(100, clarity));
+risk = Math.max(0, Math.min(100, risk));
+
+// AI STATUS
+let finalText = "";
+
+if(honesty > 75 && love > 70){
+  finalText = "❤️ Strong genuine emotional connection detected";
+}
+else if(sincerity > 50 && risk < 50){
+  finalText = "🤔 Mixed emotional signals detected";
+}
+else{
+  finalText = "🚨 High emotional inconsistency or distance detected";
+}
+
+// DISPLAY
+document.getElementById("status").innerText = "AI scan complete ✔";
+
+document.getElementById("result").innerHTML = `
+<h3>🧠 Emotional Report</h3>
+
+<p>❤️ Love Level: <b>${love}%</b></p>
+<p>💬 Sincerity: <b>${sincerity}%</b></p>
+<p>🤝 Honesty: <b>${honesty}%</b></p>
+<p>🧠 Emotional Clarity: <b>${clarity}%</b></p>
+<p>⚠️ Manipulation Risk: <b>${risk}%</b></p>
+
+<hr>
+
+<p><b>AI Conclusion:</b></p>
+<p>${finalText}</p>
+
+<p style="opacity:0.6;font-size:12px;">
+AI-based pattern analysis (not guaranteed truth)
+</p>
+`;
+
 }
 
 </script>
