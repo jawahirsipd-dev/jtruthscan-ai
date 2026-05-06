@@ -12,8 +12,10 @@ body {
   color: white;
   text-align: center;
   padding: 30px;
+  overflow-x: hidden;
 }
 
+/* Glow background */
 .glow {
   position: fixed;
   width: 500px;
@@ -23,6 +25,7 @@ body {
   opacity: 0.12;
   top: -120px;
   left: -120px;
+  z-index: 0;
 }
 
 h1 {
@@ -30,23 +33,34 @@ h1 {
   background: linear-gradient(90deg, #38bdf8, #22c55e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: pulse 2s infinite;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.tag {
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
   max-width: 700px;
   margin: auto;
+  margin-top: 25px;
   background: rgba(30, 41, 59, 0.7);
   padding: 25px;
   border-radius: 20px;
   backdrop-filter: blur(12px);
   box-shadow: 0 0 30px rgba(56,189,248,0.25);
+  position: relative;
+  z-index: 1;
 }
 
 textarea {
@@ -74,7 +88,7 @@ button {
 }
 
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
   box-shadow: 0 0 25px #38bdf8;
 }
 
@@ -86,6 +100,11 @@ button:hover {
   text-align: left;
 }
 
+.status {
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
 .badge {
   display: inline-block;
   padding: 5px 12px;
@@ -93,16 +112,6 @@ button:hover {
   border-radius: 20px;
   font-size: 12px;
   margin-top: 10px;
-}
-
-.status {
-  margin-top: 10px;
-  opacity: 0.7;
-}
-
-.score {
-  font-size: 22px;
-  font-weight: bold;
 }
 
 </style>
@@ -113,20 +122,20 @@ button:hover {
 <div class="glow"></div>
 
 <h1>🧠 TruthScan AI Pro</h1>
-<p style="opacity:0.8;">Advanced emotional + truth pattern analyzer</p>
+<p class="tag">Detect emotional truth inside messages instantly 😳</p>
 
 <div class="badge">⚡ VIRAL AI TOOL</div>
 
 <div class="card">
 
-<textarea id="text" placeholder="Paste chat message..."></textarea>
+<textarea id="text" placeholder="Paste chat message here..."></textarea>
 
-<button onclick="analyze()">Run Deep Scan 🔍</button>
+<button onclick="analyze()">Scan Message 🔍</button>
 
 <p class="status" id="status"></p>
 
 <div class="result" id="result">
-Waiting for input...
+Result will appear here...
 </div>
 
 <button onclick="copyLink()">📋 Copy & Share</button>
@@ -137,43 +146,61 @@ Waiting for input...
 
 function analyze() {
 
-  document.getElementById("status").innerText = "Deep AI scanning emotional patterns...";
+  let text = document.getElementById("text").value.toLowerCase();
+  let score = 100;
+
+  document.getElementById("status").innerText = "AI scanning emotional patterns...";
+
+  setTimeout(() => {
+    document.getElementById("status").innerText = "Detecting truth signals...";
+  }, 600);
+
+  setTimeout(() => {
+    document.getElementById("status").innerText = "Finalizing report...";
+  }, 1200);
 
   setTimeout(() => {
 
-    let text = document.getElementById("text").value.toLowerCase();
+    // SMART PATTERN LOGIC
+    const weakSignals = ["maybe","not sure","idk","i guess","probably"];
+    const avoidSignals = ["busy","later","talk later","not now","sleeping"];
+    const defensiveSignals = ["trust me","i swear","believe me","honestly"];
+    const lowSignals = ["ok","k","lol","kk"];
 
-    let score = 90;
+    weakSignals.forEach(w => { if(text.includes(w)) score -= 10; });
+    avoidSignals.forEach(w => { if(text.includes(w)) score -= 15; });
+    defensiveSignals.forEach(w => { if(text.includes(w)) score -= 20; });
+    lowSignals.forEach(w => { if(text.includes(w)) score -= 8; });
 
-    // STRONGER AI LOGIC (pattern + emotion)
-    if (text.includes("sorry")) score -= 8;
-    if (text.includes("busy")) score -= 12;
-    if (text.includes("maybe")) score -= 10;
-    if (text.includes("trust me")) score -= 22;
-    if (text.includes("i swear")) score -= 25;
-    if (text.includes("later")) score -= 10;
-    if (text.includes("lol")) score -= 5;
-    if (text.length < 10) score -= 15;
+    if(text.length < 15) score -= 15;
+    if(text.split(" ").length < 4) score -= 10;
 
-    let resultText = "";
+    let status = "";
     let insight = "";
 
-    if (score > 75) {
-      resultText = "Highly Genuine Message ✅";
-      insight = "Emotionally stable communication detected.";
-    } else if (score > 45) {
-      resultText = "Mixed Signals 🤔";
-      insight = "Possible emotional avoidance or unclear intent.";
-    } else {
-      resultText = "High Manipulation Risk 🚨";
-      insight = "Strong signs of avoidance or dishonest framing.";
+    if(score > 75){
+      status = "Genuine Communication ✅";
+      insight = "Emotionally stable and natural message pattern.";
+    }
+    else if(score > 50){
+      status = "Mixed Signals 🤔";
+      insight = "Inconsistent emotional clarity detected.";
+    }
+    else if(score > 30){
+      status = "High Emotional Avoidance 🚨";
+      insight = "Possible distancing or avoidance behavior.";
+    }
+    else{
+      status = "Manipulation Risk ⚠️";
+      insight = "Strong defensive + evasive language detected.";
     }
 
     document.getElementById("result").innerHTML = `
-      <div class="score">Truth Score: ${score}%</div>
-      <p><b>Status:</b> ${resultText}</p>
+      <h3>Result</h3>
+      <p><b>Truth Score:</b> ${score}%</p>
+      <p><b>Status:</b> ${status}</p>
       <p><b>AI Insight:</b> ${insight}</p>
-      <p style="opacity:0.7;">Note: AI-based behavioral pattern estimation</p>
+      <p style="opacity:0.6;">AI-based behavioral pattern analysis</p>
     `;
 
     document.getElementById("status").innerText = "Scan complete ✔";
