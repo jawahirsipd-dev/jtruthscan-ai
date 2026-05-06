@@ -2,51 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VibeCheck AI - Truth & Image Detector</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VibeCheck AI - Truth Scorecard</title>
 
 <style>
-body {
+body{
   margin:0;
   font-family:Arial;
-  background: radial-gradient(circle at top, #0f172a, #000);
+  background:#0a0f1c;
   color:white;
+}
+
+/* HERO */
+.hero{
   text-align:center;
-  padding:20px;
+  padding:40px 20px;
+  background:linear-gradient(90deg,#0f172a,#1e293b);
 }
 
-.glow {
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:#38bdf8;
-  filter:blur(180px);
-  opacity:0.12;
-  top:-120px;
-  left:-120px;
+.hero h1{
+  font-size:42px;
+  color:#38bdf8;
 }
 
-h1 {
-  font-size:38px;
-  background:linear-gradient(90deg,#38bdf8,#22c55e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.card {
+/* SCORECARD (NETFLIX STYLE) */
+.card{
   max-width:800px;
-  margin:auto;
-  background:rgba(30,41,59,0.7);
-  padding:20px;
+  margin:20px auto;
+  background:#111827;
   border-radius:15px;
-  backdrop-filter:blur(12px);
-  margin-top:20px;
+  padding:20px;
+  box-shadow:0 0 20px rgba(56,189,248,0.2);
 }
 
-textarea {
+/* INPUT */
+textarea{
   width:100%;
-  height:130px;
+  height:120px;
   border:none;
   border-radius:10px;
   padding:12px;
@@ -54,7 +45,8 @@ textarea {
   color:white;
 }
 
-button {
+/* BUTTON */
+button{
   width:100%;
   margin-top:10px;
   padding:12px;
@@ -65,72 +57,94 @@ button {
   cursor:pointer;
 }
 
-.result {
+/* SCORE GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+
+.box{
+  background:#0b1220;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* AI TEXT OUTPUT */
+.ai-box{
   margin-top:15px;
   background:#0b1220;
   padding:15px;
   border-radius:10px;
-  text-align:left;
+  min-height:60px;
 }
 
-/* IMAGE INPUT */
-input[type="file"] {
-  margin-top:10px;
-  width:100%;
+/* TYPING EFFECT */
+.typing{
+  display:inline-block;
+  overflow:hidden;
+  border-right:2px solid white;
+  white-space:nowrap;
+  animation:typing 2s steps(40,end), blink .7s infinite;
 }
 
-/* AD BOX */
-.ad {
-  margin:20px 0;
-  padding:15px;
-  background:#111827;
-  border-radius:10px;
-  opacity:0.7;
+@keyframes typing{
+  from{width:0}
+  to{width:100%}
+}
+
+@keyframes blink{
+  50%{border-color:transparent}
+}
+
+/* VIRAL SECTION */
+.viral{
+  text-align:center;
+  padding:40px;
+  opacity:0.8;
+  font-size:14px;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="glow"></div>
+<div class="hero">
+  <h1>🧠 VibeCheck AI</h1>
+  <p>Netflix-Style Relationship Truth Scorecard</p>
+</div>
 
-<h1>🧠 VibeCheck AI</h1>
-<p>Emotion + Image Intelligence Tool</p>
-
-<!-- AD -->
-<div class="ad">ADVERTISEMENT SPACE</div>
-
-<!-- TEXT ANALYZER -->
 <div class="card">
 
-<h2>💬 Message Analyzer</h2>
+<h2>💬 Paste Message</h2>
 
-<textarea id="text" placeholder="Paste chat message..."></textarea>
+<textarea id="text"></textarea>
 
-<button onclick="analyzeText()">Analyze Message</button>
+<button onclick="analyze()">Generate Truth Scorecard</button>
 
-<div class="result" id="textResult">Result will appear here...</div>
+<div class="grid">
+  <div class="box">❤️ Love<br><span id="love">--</span>%</div>
+  <div class="box">💬 Sincerity<br><span id="sinc">--</span>%</div>
+  <div class="box">🤝 Honesty<br><span id="hon">--</span>%</div>
+  <div class="box">⚠️ Risk<br><span id="risk">--</span>%</div>
+</div>
+
+<div class="ai-box" id="aiBox">
+AI insight will appear here...
+</div>
 
 </div>
 
-<!-- IMAGE ANALYZER -->
-<div class="card">
-
-<h2>🖼 AI Image Detector</h2>
-
-<input type="file" id="imageInput">
-
-<button onclick="analyzeImage()">Analyze Image</button>
-
-<div class="result" id="imgResult">Upload image to analyze...</div>
-
+<div class="viral">
+🔥 TikTok-ready AI relationship analyzer | Share your results
 </div>
 
 <script>
 
-/* ---------------- TEXT ANALYSIS ---------------- */
-function analyzeText(){
+function analyze(){
 
 let text = document.getElementById("text").value.toLowerCase();
 
@@ -139,65 +153,44 @@ let sincerity = 75;
 let honesty = 85;
 let risk = 20;
 
-if(text.includes("love") || text.includes("miss")) love += 5;
-if(text.includes("busy")) love -= 10;
-if(text.includes("maybe")) sincerity -= 10;
+/* BASIC LOGIC */
+if(text.includes("love")) love += 8;
+if(text.includes("miss")) love += 5;
+if(text.includes("busy")) sincerity -= 12;
 if(text.includes("idk")) sincerity -= 10;
-if(text.includes("trust me")) risk += 15;
+if(text.includes("trust")) risk += 10;
 
-love = Math.max(0,love);
-sincerity = Math.max(0,sincerity);
-honesty = Math.max(0,honesty);
-risk = Math.max(0,risk);
+/* LIMIT */
+love = Math.max(0,Math.min(100,love));
+sincerity = Math.max(0,Math.min(100,sincerity));
+honesty = Math.max(0,Math.min(100,honesty));
+risk = Math.max(0,Math.min(100,risk));
 
-document.getElementById("textResult").innerHTML = `
-<h3>🧠 AI Report</h3>
-<p>❤️ Love: ${love}%</p>
-<p>💬 Sincerity: ${sincerity}%</p>
-<p>🤝 Honesty: ${honesty}%</p>
-<p>⚠️ Risk: ${risk}%</p>
-`;
+/* UPDATE UI */
+document.getElementById("love").innerText = love;
+document.getElementById("sinc").innerText = sincerity;
+document.getElementById("hon").innerText = honesty;
+document.getElementById("risk").innerText = risk;
 
+/* AI SENTENCE ENGINE */
+let aiText = "";
+
+if(love > 85 && sincerity > 80){
+  aiText = "This message reflects strong emotional attachment and genuine intent. The communication shows honesty and care.";
 }
-
-/* ---------------- IMAGE ANALYSIS ---------------- */
-function analyzeImage(){
-
-let file = document.getElementById("imageInput").files[0];
-
-if(!file){
-  alert("Please upload an image");
-  return;
+else if(risk > 50){
+  aiText = "This message shows emotional inconsistency and possible manipulation signals. Intent is unclear and unstable.";
 }
-
-let score = 50;
-
-// FAKE AI LOGIC (VIRAL STYLE)
-if(file.size < 400000) score += 20;
-if(file.type === "image/png") score += 10;
-if(file.name.toLowerCase().includes("ai")) score += 15;
-if(file.name.toLowerCase().includes("generated")) score += 20;
-
-score = Math.min(100, score);
-
-let result = "";
-
-if(score > 75){
-  result = "🤖 Highly likely AI-generated image";
-}
-else if(score > 50){
-  result = "🤔 Possibly AI-generated or edited";
+else if(sincerity < 60){
+  aiText = "This message appears emotionally distant with unclear commitment. The sender may be avoiding deeper emotional expression.";
 }
 else{
-  result = "📷 Likely a real image";
+  aiText = "This message contains mixed emotional signals. The true intention cannot be confirmed with high confidence.";
 }
 
-document.getElementById("imgResult").innerHTML = `
-<h3>🧠 AI Image Report</h3>
-<p>Confidence Score: ${score}%</p>
-<p>${result}</p>
-<p style="opacity:0.6;font-size:12px;">Demo AI logic (not real ML model)</p>
-`;
+/* TYPING ANIMATION */
+document.getElementById("aiBox").innerHTML =
+`<div class="typing">${aiText}</div>`;
 
 }
 
