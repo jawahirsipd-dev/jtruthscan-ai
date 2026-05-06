@@ -1,41 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<title>TruthScan AI SaaS</title>
+<title>TruthScan AI Pro - Love & Message Analyzer Tool</title>
+
+<meta name="description" content="TruthScan AI Pro is a free AI emotional analysis tool that detects love level, sincerity, honesty, and manipulation risk in chat messages.">
+<meta name="keywords" content="AI chat analyzer, love detector, message analysis tool, relationship AI, emotional analysis tool, truth scanner AI">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph (for social sharing) -->
+<meta property="og:title" content="TruthScan AI Pro - AI Emotional Analyzer">
+<meta property="og:description" content="Check love, sincerity, honesty and emotional signals in any chat message using AI-style analysis.">
+<meta property="og:type" content="website">
+
+<!-- AdSense placeholder -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 <style>
 body {
   margin:0;
-  font-family: Arial, sans-serif;
+  font-family:Arial;
   background:#0f172a;
   color:white;
 }
 
-/* LOGIN PAGE */
-#loginPage, #appPage {
-  display:none;
-  height:100vh;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
+header {
   text-align:center;
+  padding:40px 20px;
+  background:linear-gradient(90deg,#0f172a,#1e293b);
+}
+
+h1 {
+  font-size:40px;
+  color:#38bdf8;
 }
 
 .container {
-  background:#1e293b;
-  padding:25px;
-  border-radius:12px;
-  width:90%;
-  max-width:400px;
+  max-width:900px;
+  margin:auto;
+  padding:20px;
 }
 
-input {
+/* SEO CONTENT BLOCK */
+.article {
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  line-height:1.6;
+}
+
+/* TOOL BOX */
+.tool {
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+}
+
+textarea {
   width:100%;
+  height:140px;
   padding:12px;
-  margin-top:10px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   background:#0b1220;
   color:white;
 }
@@ -45,37 +73,10 @@ button {
   margin-top:10px;
   padding:12px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   background:linear-gradient(90deg,#22c55e,#38bdf8);
   color:white;
   cursor:pointer;
-}
-
-/* DASHBOARD */
-.header {
-  padding:15px;
-  background:#1e293b;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.card {
-  max-width:800px;
-  margin:20px auto;
-  background:#1e293b;
-  padding:20px;
-  border-radius:12px;
-}
-
-textarea {
-  width:100%;
-  height:120px;
-  background:#0b1220;
-  color:white;
-  border:none;
-  padding:12px;
-  border-radius:10px;
 }
 
 .result {
@@ -83,82 +84,78 @@ textarea {
   background:#0b1220;
   padding:15px;
   border-radius:10px;
-  text-align:left;
 }
 
-.small {
-  opacity:0.7;
-  font-size:12px;
+/* ADS */
+.adbox {
+  margin:20px 0;
+  padding:15px;
+  background:#111827;
+  text-align:center;
+  border-radius:10px;
+  font-size:14px;
+  opacity:0.8;
 }
 </style>
+
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="loginPage" style="display:flex;">
-  <div class="container">
-    <h2>🧠 TruthScan AI SaaS</h2>
-    <input id="user" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p class="small">Demo login system (no backend)</p>
-  </div>
+<header>
+  <h1>🧠 TruthScan AI Pro</h1>
+  <p>Free AI Tool for Emotional & Relationship Message Analysis</p>
+</header>
+
+<div class="container">
+
+<!-- SEO ARTICLE (IMPORTANT FOR GOOGLE RANKING) -->
+<div class="article">
+<h2>What is TruthScan AI Pro?</h2>
+<p>
+TruthScan AI Pro is a free AI-based emotional analysis tool that helps users understand the hidden meaning behind chat messages. It analyzes emotional signals such as love level, sincerity, honesty, and possible manipulation patterns.
+</p>
+
+<p>
+This tool is designed for relationship insights, communication understanding, and emotional behavior detection using simple AI-style logic.
+</p>
 </div>
 
-<!-- APP -->
-<div id="appPage">
+<!-- TOP AD -->
+<div class="adbox">ADVERTISEMENT SPACE</div>
 
-<div class="header">
-  <div>🚀 TruthScan AI Pro</div>
-  <button onclick="logout()">Logout</button>
-</div>
+<!-- TOOL -->
+<div class="tool">
 
-<div class="card">
+<h2>🧠 AI Message Analyzer</h2>
 
-<h3>🧠 Emotional AI Analyzer</h3>
+<textarea id="text" placeholder="Paste chat message here..."></textarea>
 
-<textarea id="text" placeholder="Paste chat message..."></textarea>
-
-<button onclick="analyze()">Scan Message</button>
+<button onclick="analyze()">Analyze Message</button>
 
 <div class="result" id="result">Result will appear here...</div>
 
 </div>
 
+<!-- SECOND ARTICLE (SEO BOOST) -->
+<div class="article">
+<h2>How AI Message Analysis Works</h2>
+<p>
+The system detects emotional patterns, word usage, and behavioral signals. It evaluates messages based on sentiment indicators such as affection words, avoidance patterns, and uncertainty phrases.
+</p>
+
+<p>
+This helps users get a psychological-style breakdown of conversations in seconds.
+</p>
+</div>
+
+<!-- BOTTOM AD -->
+<div class="adbox">ADVERTISEMENT SPACE</div>
+
 </div>
 
 <script>
 
-/* LOGIN SYSTEM */
-function login(){
-  let u = document.getElementById("user").value;
-  let p = document.getElementById("pass").value;
-
-  if(u && p){
-    localStorage.setItem("user",u);
-    showApp();
-  } else {
-    alert("Enter username & password");
-  }
-}
-
-function logout(){
-  localStorage.removeItem("user");
-  location.reload();
-}
-
-function showApp(){
-  document.getElementById("loginPage").style.display="none";
-  document.getElementById("appPage").style.display="block";
-}
-
-/* AUTO LOGIN */
-if(localStorage.getItem("user")){
-  showApp();
-}
-
-/* AI ANALYZER */
 function analyze(){
 
 let text = document.getElementById("text").value.toLowerCase();
@@ -166,40 +163,24 @@ let text = document.getElementById("text").value.toLowerCase();
 let love = 80;
 let sincerity = 75;
 let honesty = 85;
-let clarity = 70;
 let risk = 20;
 
-const weak = ["maybe","idk","not sure"];
-const avoid = ["busy","later","sleeping"];
-const defend = ["trust me","i swear"];
+if(text.includes("love") || text.includes("miss")) love += 5;
+if(text.includes("busy")) love -= 10;
+if(text.includes("maybe")) sincerity -= 10;
+if(text.includes("trust me")) risk += 15;
 
-weak.forEach(w=>{ if(text.includes(w)){ sincerity-=10; clarity-=10; }});
-avoid.forEach(w=>{ if(text.includes(w)){ love-=12; }});
-defend.forEach(w=>{ if(text.includes(w)){ risk+=15; honesty-=10; }});
-
-love = Math.max(0,Math.min(100,love));
-sincerity = Math.max(0,Math.min(100,sincerity));
-honesty = Math.max(0,Math.min(100,honesty));
-clarity = Math.max(0,Math.min(100,clarity));
-risk = Math.max(0,Math.min(100,risk));
-
-let final =
-(love>75 && honesty>75)
-? "❤️ Strong emotional connection detected"
-: (sincerity>50)
-? "🤔 Mixed emotional signals detected"
-: "🚨 Emotional distance or manipulation risk detected";
+love = Math.max(0,love);
+sincerity = Math.max(0,sincerity);
+honesty = Math.max(0,honesty);
+risk = Math.max(0,risk);
 
 document.getElementById("result").innerHTML = `
 <h3>🧠 AI Report</h3>
-<p>❤️ Love: ${love}%</p>
+<p>❤️ Love Level: ${love}%</p>
 <p>💬 Sincerity: ${sincerity}%</p>
 <p>🤝 Honesty: ${honesty}%</p>
-<p>🧠 Clarity: ${clarity}%</p>
 <p>⚠️ Risk: ${risk}%</p>
-<hr>
-<p><b>Conclusion:</b> ${final}</p>
-<p class="small">SaaS Demo System (Frontend Only)</p>
 `;
 
 }
