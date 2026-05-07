@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Hub Pro (5 AI Options)</title>
+<title>Creator Hub Expandable SaaS</title>
 
 <style>
 
@@ -28,45 +28,47 @@ background:linear-gradient(90deg,#38bdf8,#22c55e);
 }
 
 .container{
-max-width:1100px;
+max-width:900px;
 margin:auto;
 padding:20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+display:flex;
+flex-direction:column;
 gap:20px;
 }
 
-.card{
+.tool{
 background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:15px;
 border:1px solid rgba(255,255,255,0.1);
+border-radius:15px;
+padding:20px;
+}
+
+.title{
+font-size:24px;
+cursor:pointer;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.panel{
+display:none;
+margin-top:15px;
 }
 
 input{
 width:100%;
 padding:10px;
-border:none;
 border-radius:8px;
-margin-bottom:10px;
+border:none;
 background:#111827;
 color:white;
-}
-
-button{
-width:100%;
-padding:10px;
-border:none;
-border-radius:8px;
-background:linear-gradient(90deg,#22c55e,#38bdf8);
-color:white;
-font-weight:bold;
-cursor:pointer;
+margin-bottom:10px;
 }
 
 .option{
-margin-top:8px;
 padding:10px;
+margin-top:8px;
 border-radius:8px;
 background:#0f172a;
 cursor:pointer;
@@ -82,8 +84,19 @@ color:black;
 .result{
 margin-top:10px;
 font-size:13px;
-white-space:pre-wrap;
 opacity:0.9;
+white-space:pre-wrap;
+}
+
+button{
+width:100%;
+padding:10px;
+border:none;
+border-radius:8px;
+background:linear-gradient(90deg,#22c55e,#38bdf8);
+color:white;
+font-weight:bold;
+cursor:pointer;
 }
 
 </style>
@@ -92,52 +105,87 @@ opacity:0.9;
 <body>
 
 <div class="header">
-<h1>🚀 Creator Hub Pro</h1>
-<p>5 AI Options for Every Tool</p>
+<h1>🚀 Expandable Creator SaaS</h1>
+<p>Each tool contains 5 AI options inside</p>
 </div>
 
 <div class="container">
 
-<!-- VIDEO -->
-<div class="card">
-<h2>🎬 Video AI (5 Options)</h2>
+<!-- VIDEO TOOL -->
+<div class="tool">
+
+<div class="title" onclick="toggle('videoPanel')">
+🎬 Video AI Tools <span>▼</span>
+</div>
+
+<div class="panel" id="videoPanel">
+
 <input id="videoInput" placeholder="Enter video idea">
-<button onclick="videoAI()">Generate</button>
+<button onclick="videoTools()">Generate Options</button>
 
 <div id="videoBox"></div>
 <div class="result" id="videoResult"></div>
+
 </div>
 
-<!-- IMAGE -->
-<div class="card">
-<h2>🖼️ Image AI (5 Options)</h2>
+</div>
+
+<!-- IMAGE TOOL -->
+<div class="tool">
+
+<div class="title" onclick="toggle('imagePanel')">
+🖼️ Image AI Tools <span>▼</span>
+</div>
+
+<div class="panel" id="imagePanel">
+
 <input id="imageInput" placeholder="Enter image idea">
-<button onclick="imageAI()">Generate</button>
+<button onclick="imageTools()">Generate Options</button>
 
 <div id="imageBox"></div>
 <div class="result" id="imageResult"></div>
+
 </div>
 
-<!-- VOICE -->
-<div class="card">
-<h2>🎤 Voice AI (5 Options)</h2>
+</div>
+
+<!-- VOICE TOOL -->
+<div class="tool">
+
+<div class="title" onclick="toggle('voicePanel')">
+🎤 Voice AI Tools <span>▼</span>
+</div>
+
+<div class="panel" id="voicePanel">
+
 <input id="voiceInput" placeholder="Enter voice style">
-<button onclick="voiceAI()">Generate</button>
+<button onclick="voiceTools()">Generate Options</button>
 
 <div id="voiceBox"></div>
 <div class="result" id="voiceResult"></div>
+
+</div>
+
 </div>
 
 </div>
 
 <script>
 
-function copy(t){
-navigator.clipboard.writeText(t);
+function toggle(id){
+
+let el=document.getElementById(id);
+
+el.style.display = (el.style.display==="block") ? "none" : "block";
+
 }
 
-/* VIDEO AI */
-function videoAI(){
+function copy(text){
+navigator.clipboard.writeText(text);
+}
+
+/* VIDEO */
+function videoTools(){
 
 let p=document.getElementById("videoInput").value;
 
@@ -169,8 +217,8 @@ box.appendChild(d);
 
 }
 
-/* IMAGE AI */
-function imageAI(){
+/* IMAGE */
+function imageTools(){
 
 let p=document.getElementById("imageInput").value;
 
@@ -202,8 +250,8 @@ box.appendChild(d);
 
 }
 
-/* VOICE AI */
-function voiceAI(){
+/* VOICE */
+function voiceTools(){
 
 let p=document.getElementById("voiceInput").value;
 
@@ -226,7 +274,7 @@ d.innerText=t[0];
 d.onclick=()=>{
 copy(p);
 document.getElementById("voiceResult").innerText=
-"Voice prompt copied for "+t[0];
+"Prompt copied for "+t[0];
 window.open(t[1],"_blank");
 };
 
