@@ -7,117 +7,61 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial,sans-serif;
 background:#050816;
 color:white;
-overflow-x:hidden;
+padding:20px;
 }
 
-.hero{
+h1{
 text-align:center;
-padding:80px 20px;
-background:radial-gradient(circle at top,#0f172a,#020617);
-}
-
-.hero h1{
-font-size:60px;
+font-size:50px;
 background:linear-gradient(90deg,#38bdf8,#22c55e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:20px;
 }
 
-.hero p{
-font-size:20px;
-opacity:0.8;
-max-width:700px;
+.container{
+max-width:1000px;
 margin:auto;
 }
 
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:14px 28px;
-border-radius:12px;
+.box{
+background:#111827;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+textarea,input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#1e293b;
+color:white;
+}
+
+button{
+margin-top:10px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
 background:linear-gradient(90deg,#22c55e,#38bdf8);
 color:white;
-text-decoration:none;
+cursor:pointer;
 font-weight:bold;
-transition:0.3s;
 }
 
-.btn:hover{
-transform:scale(1.08);
-box-shadow:0 0 20px #38bdf8;
-}
-
-.tools{
-padding:60px 20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-max-width:1200px;
-margin:auto;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-padding:25px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-border-color:#38bdf8;
-box-shadow:0 0 20px rgba(56,189,248,0.3);
-}
-
-.icon{
-font-size:50px;
-margin-bottom:15px;
-}
-
-.card h2{
-margin-bottom:10px;
-font-size:24px;
-}
-
-.card p{
-opacity:0.7;
-line-height:1.5;
-margin-bottom:20px;
-}
-
-.tool-btn{
-display:inline-block;
-padding:10px 18px;
+.result{
+margin-top:15px;
+padding:15px;
+background:#0f172a;
 border-radius:10px;
-background:#38bdf8;
-color:white;
-text-decoration:none;
-transition:0.3s;
-}
-
-.tool-btn:hover{
-background:#22c55e;
-}
-
-.footer{
-text-align:center;
-padding:30px;
-opacity:0.6;
-border-top:1px solid rgba(255,255,255,0.1);
-margin-top:50px;
+white-space:pre-wrap;
 }
 
 </style>
@@ -125,96 +69,179 @@ margin-top:50px;
 
 <body>
 
-<section class="hero">
+<div class="container">
 
 <h1>🚀 Viral AI Creator Hub</h1>
 
-<p>
-All-in-one AI creator platform for video generation, image creation,
-thumbnails, SEO, hashtags, scripts, music search, and more.
-</p>
+<!-- SEO TITLE -->
+<div class="box">
+<h2>📈 SEO Title Generator</h2>
 
-<a href="#tools" class="btn">Explore Tools</a>
+<input type="text" id="seoInput" placeholder="Enter topic">
 
-</section>
+<button onclick="generateSEO()">Generate SEO Titles</button>
 
-<section class="tools" id="tools">
-
-<div class="card">
-<div class="icon">🎬</div>
-<h2>AI Video Generator</h2>
-<p>Create cinematic AI videos instantly from prompts.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<div class="result" id="seoResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">🖼️</div>
-<h2>Image Generator</h2>
-<p>Generate realistic or anime AI images fast.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- DESCRIPTION -->
+<div class="box">
+<h2>✍️ Description Generator</h2>
+
+<input type="text" id="descInput" placeholder="Enter video topic">
+
+<button onclick="generateDesc()">Generate Description</button>
+
+<div class="result" id="descResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">🔥</div>
-<h2>Thumbnail Generator</h2>
-<p>Create viral YouTube thumbnails easily.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- HASHTAGS -->
+<div class="box">
+<h2>#️⃣ Hashtag Generator</h2>
+
+<input type="text" id="hashInput" placeholder="Enter topic">
+
+<button onclick="generateHash()">Generate Hashtags</button>
+
+<div class="result" id="hashResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">📈</div>
-<h2>SEO Generator</h2>
-<p>Generate click-worthy SEO titles instantly.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- SCRIPT -->
+<div class="box">
+<h2>🧠 Script Generator</h2>
+
+<input type="text" id="scriptInput" placeholder="Enter topic">
+
+<button onclick="generateScript()">Generate Script</button>
+
+<div class="result" id="scriptResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">✍️</div>
-<h2>Description Generator</h2>
-<p>Create engaging YouTube descriptions.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- MUSIC -->
+<div class="box">
+<h2>🎵 Free Music Search</h2>
+
+<input type="text" id="musicInput" placeholder="Enter mood">
+
+<button onclick="searchMusic()">Search Music</button>
+
+<div class="result" id="musicResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">#️⃣</div>
-<h2>Hashtag Generator</h2>
-<p>Find trending hashtags for viral reach.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- THUMBNAIL -->
+<div class="box">
+<h2>🔥 Thumbnail Prompt Generator</h2>
+
+<input type="text" id="thumbInput" placeholder="Enter video topic">
+
+<button onclick="generateThumb()">Generate Prompt</button>
+
+<div class="result" id="thumbResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">⬇️</div>
-<h2>Video Downloader</h2>
-<p>Download videos from supported platforms.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- IMAGE -->
+<div class="box">
+<h2>🖼️ AI Image Prompt</h2>
+
+<input type="text" id="imageInput" placeholder="Enter image idea">
+
+<button onclick="generateImage()">Generate Image Prompt</button>
+
+<div class="result" id="imageResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">🎵</div>
-<h2>Free Music Search</h2>
-<p>Search royalty-free music for content.</p>
-<a href="#" class="tool-btn">Open Tool</a>
+<!-- VIDEO IDEA -->
+<div class="box">
+<h2>🎬 Viral Video Idea</h2>
+
+<input type="text" id="videoInput" placeholder="Enter niche">
+
+<button onclick="generateVideo()">Generate Idea</button>
+
+<div class="result" id="videoResult"></div>
 </div>
 
-<div class="card">
-<div class="icon">🧠</div>
-<h2>Script Generator</h2>
-<p>Create viral TikTok & Shorts scripts.</p>
-<a href="#" class="tool-btn">Open Tool</a>
 </div>
 
-<div class="card">
-<div class="icon">🎤</div>
-<h2>AI Voice Generator</h2>
-<p>Generate realistic AI voiceovers instantly.</p>
-<a href="#" class="tool-btn">Open Tool</a>
-</div>
+<script>
 
-</section>
+function generateSEO(){
 
-<div class="footer">
-© 2026 Viral AI Creator Hub
-</div>
+let topic=document.getElementById("seoInput").value;
+
+document.getElementById("seoResult").innerText=
+"🔥 "+topic+" EXPOSED 😱\\n"+
+"Top 10 "+topic+" Secrets Nobody Knows\\n"+
+"How "+topic+" Went Viral Overnight";
+}
+
+function generateDesc(){
+
+let topic=document.getElementById("descInput").value;
+
+document.getElementById("descResult").innerText=
+"This video reveals everything about "+topic+
+". Watch till the end for shocking details and viral moments.";
+}
+
+function generateHash(){
+
+let topic=document.getElementById("hashInput").value;
+
+document.getElementById("hashResult").innerText=
+"#"+topic.replace(/ /g,"")+" #viral #fyp #trending #youtube #shorts #tiktok";
+}
+
+function generateScript(){
+
+let topic=document.getElementById("scriptInput").value;
+
+document.getElementById("scriptResult").innerText=
+"HOOK: You won't believe this about "+topic+" 😳\\n\\n"+
+"MAIN: Here is the shocking truth behind "+topic+
+"...\\n\\nENDING: Follow for more viral stories!";
+}
+
+function searchMusic(){
+
+let mood=document.getElementById("musicInput").value;
+
+document.getElementById("musicResult").innerText=
+"🎵 Recommended free music for "+mood+":\\n\\n"+
+"- Cinematic Beat\\n"+
+"- Emotional Trap\\n"+
+"- Viral TikTok Sound";
+}
+
+function generateThumb(){
+
+let topic=document.getElementById("thumbInput").value;
+
+document.getElementById("thumbResult").innerText=
+"Ultra realistic YouTube thumbnail about "+topic+
+", dramatic lighting, shocked face, glowing text, viral style";
+}
+
+function generateImage(){
+
+let idea=document.getElementById("imageInput").value;
+
+document.getElementById("imageResult").innerText=
+"Ultra realistic "+idea+
+", cinematic lighting, 8k, detailed, trending AI art";
+}
+
+function generateVideo(){
+
+let niche=document.getElementById("videoInput").value;
+
+document.getElementById("videoResult").innerText=
+"🎬 Viral video idea:\\n\\n"+
+\"'I tested the craziest \"+niche+
+\" trend and this happened 😳'\";
+}
+
+</script>
 
 </body>
 </html>
