@@ -1,185 +1,220 @@
 <!DOCTYPE html>
-<html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TruthScan AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viral AI Creator Hub</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0f172a, #020617);
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-  }
 
-  /* floating glow background */
-  .bg-glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: #38bdf8;
-    filter: blur(150px);
-    opacity: 0.15;
-    top: -100px;
-    left: -100px;
-    z-index: 0;
-  }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-  h1 {
-    font-size: 45px;
-    margin-top: 60px;
-    background: linear-gradient(90deg, #38bdf8, #22c55e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 2s infinite alternate;
-  }
+body{
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
 
-  @keyframes glow {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-  }
+.hero{
+text-align:center;
+padding:80px 20px;
+background:radial-gradient(circle at top,#0f172a,#020617);
+}
 
-  .tagline {
-    opacity: 0.7;
-    margin-bottom: 20px;
-  }
+.hero h1{
+font-size:60px;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px;
+}
 
-  .card {
-    position: relative;
-    z-index: 1;
-    width: 90%;
-    max-width: 650px;
-    margin: auto;
-    margin-top: 30px;
-    padding: 25px;
-    background: rgba(30, 41, 59, 0.7);
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 0 25px rgba(56,189,248,0.2);
-  }
+.hero p{
+font-size:20px;
+opacity:0.8;
+max-width:700px;
+margin:auto;
+}
 
-  textarea {
-    width: 100%;
-    height: 150px;
-    border-radius: 12px;
-    border: none;
-    padding: 15px;
-    font-size: 16px;
-    background: #0b1220;
-    color: white;
-    outline: none;
-  }
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:14px 28px;
+border-radius:12px;
+background:linear-gradient(90deg,#22c55e,#38bdf8);
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
 
-  button {
-    margin-top: 15px;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #22c55e, #38bdf8);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 20px #38bdf8;
+}
 
-  button:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 20px rgba(56,189,248,0.4);
-  }
+.tools{
+padding:60px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
+}
 
-  .result {
-    margin-top: 25px;
-    padding: 20px;
-    background: rgba(15, 23, 42, 0.8);
-    border-radius: 15px;
-    text-align: left;
-  }
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:0.3s;
+}
 
-  .badge {
-    display: inline-block;
-    padding: 5px 12px;
-    background: #1d4ed8;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 10px;
-  }
+.card:hover{
+transform:translateY(-10px);
+border-color:#38bdf8;
+box-shadow:0 0 20px rgba(56,189,248,0.3);
+}
 
-  .score {
-    font-size: 22px;
-    font-weight: bold;
-  }
+.icon{
+font-size:50px;
+margin-bottom:15px;
+}
 
-  .green { color: #22c55e; }
-  .yellow { color: #facc15; }
-  .red { color: #ef4444; }
+.card h2{
+margin-bottom:10px;
+font-size:24px;
+}
+
+.card p{
+opacity:0.7;
+line-height:1.5;
+margin-bottom:20px;
+}
+
+.tool-btn{
+display:inline-block;
+padding:10px 18px;
+border-radius:10px;
+background:#38bdf8;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.tool-btn:hover{
+background:#22c55e;
+}
+
+.footer{
+text-align:center;
+padding:30px;
+opacity:0.6;
+border-top:1px solid rgba(255,255,255,0.1);
+margin-top:50px;
+}
 
 </style>
 </head>
 
 <body>
 
-<div class="bg-glow"></div>
+<section class="hero">
 
-<h1>🧠 TruthScan AI</h1>
-<p class="tagline">Detect emotional truth inside messages instantly</p>
-<div class="badge">⚡ Viral AI Tool</div>
+<h1>🚀 Viral AI Creator Hub</h1>
+
+<p>
+All-in-one AI creator platform for video generation, image creation,
+thumbnails, SEO, hashtags, scripts, music search, and more.
+</p>
+
+<a href="#tools" class="btn">Explore Tools</a>
+
+</section>
+
+<section class="tools" id="tools">
 
 <div class="card">
-
-  <textarea id="text" placeholder="Paste chat message here..."></textarea>
-
-  <br>
-  <button onclick="analyze()">Scan Message</button>
-
-  <div class="result" id="result">
-    Result will appear here...
-  </div>
-
+<div class="icon">🎬</div>
+<h2>AI Video Generator</h2>
+<p>Create cinematic AI videos instantly from prompts.</p>
+<a href="#" class="tool-btn">Open Tool</a>
 </div>
 
-<script>
-function analyze() {
+<div class="card">
+<div class="icon">🖼️</div>
+<h2>Image Generator</h2>
+<p>Generate realistic or anime AI images fast.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
 
-  let text = document.getElementById("text").value.toLowerCase();
-  let score = 85;
+<div class="card">
+<div class="icon">🔥</div>
+<h2>Thumbnail Generator</h2>
+<p>Create viral YouTube thumbnails easily.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
 
-  if (text.includes("sorry")) score -= 10;
-  if (text.includes("busy")) score -= 15;
-  if (text.includes("maybe")) score -= 10;
-  if (text.includes("trust me")) score -= 20;
-  if (text.includes("later")) score -= 10;
-  if (text.includes("i swear")) score -= 25;
+<div class="card">
+<div class="icon">📈</div>
+<h2>SEO Generator</h2>
+<p>Generate click-worthy SEO titles instantly.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
 
-  let status = "";
-  let color = "";
+<div class="card">
+<div class="icon">✍️</div>
+<h2>Description Generator</h2>
+<p>Create engaging YouTube descriptions.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
 
-  if (score > 70) {
-    status = "Likely Honest ✅";
-    color = "green";
-  } else if (score > 40) {
-    status = "Suspicious 🤔";
-    color = "yellow";
-  } else {
-    status = "High Chance of Dishonesty 🚩";
-    color = "red";
-  }
+<div class="card">
+<div class="icon">#️⃣</div>
+<h2>Hashtag Generator</h2>
+<p>Find trending hashtags for viral reach.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
 
-  document.getElementById("result").innerHTML = `
-    <div class="score ${color}">
-      Truth Score: ${score}%
-    </div>
-    <p><b>AI Analysis:</b> ${status}</p>
-    <p><b>Insight:</b> Emotional inconsistency detected in message pattern.</p>
-    <p><b>Suggested Reply:</b> "Just be honest, I respect the truth more."</p>
-  `;
-}
-</script>
+<div class="card">
+<div class="icon">⬇️</div>
+<h2>Video Downloader</h2>
+<p>Download videos from supported platforms.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
+
+<div class="card">
+<div class="icon">🎵</div>
+<h2>Free Music Search</h2>
+<p>Search royalty-free music for content.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
+
+<div class="card">
+<div class="icon">🧠</div>
+<h2>Script Generator</h2>
+<p>Create viral TikTok & Shorts scripts.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
+
+<div class="card">
+<div class="icon">🎤</div>
+<h2>AI Voice Generator</h2>
+<p>Generate realistic AI voiceovers instantly.</p>
+<a href="#" class="tool-btn">Open Tool</a>
+</div>
+
+</section>
+
+<div class="footer">
+© 2026 Viral AI Creator Hub
+</div>
 
 </body>
-</html>
-  
 </html>
