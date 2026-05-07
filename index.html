@@ -1,235 +1,151 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>VibeCheck AI - 10 Tools</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+export default function ViralAIToolsHub() {
+  const tools = [
+    {
+      name: "AI Video Generator",
+      desc: "Generate cinematic AI videos from prompts.",
+      icon: "🎬",
+    },
+    {
+      name: "AI Image Generator",
+      desc: "Create realistic or anime AI images instantly.",
+      icon: "🖼️",
+    },
+    {
+      name: "Thumbnail Generator",
+      desc: "Make viral YouTube thumbnails fast.",
+      icon: "🔥",
+    },
+    {
+      name: "SEO Title Generator",
+      desc: "Generate click-worthy SEO optimized titles.",
+      icon: "📈",
+    },
+    {
+      name: "Description Generator",
+      desc: "Create engaging YouTube descriptions.",
+      icon: "✍️",
+    },
+    {
+      name: "Hashtag Generator",
+      desc: "Find trending hashtags for TikTok and YouTube.",
+      icon: "#️⃣",
+    },
+    {
+      name: "Video Downloader",
+      desc: "Download videos from supported platforms.",
+      icon: "⬇️",
+    },
+    {
+      name: "Free Music Search",
+      desc: "Search royalty-free background music.",
+      icon: "🎵",
+    },
+    {
+      name: "Script Generator",
+      desc: "Create viral short-form scripts instantly.",
+      icon: "🧠",
+    },
+    {
+      name: "AI Voice Generator",
+      desc: "Generate realistic AI voiceovers.",
+      icon: "🎤",
+    },
+  ];
 
-<style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#0a0f1c;
-  color:white;
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/20 blur-3xl rounded-full"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-500/20 blur-3xl rounded-full"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
+          <div className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-sm mb-6">
+            🚀 Viral AI Creator Tools Hub
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 bg-gradient-to-r from-cyan-400 to-green-400 bg-clip-text text-transparent">
+            Create Viral Content
+            <br />
+            With AI Tools
+          </h1>
+
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl mb-10">
+            All-in-one creator platform for AI videos, thumbnails, SEO,
+            hashtags, scripts, music, and more.
+          </p>
+
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-green-500 font-bold text-lg hover:scale-105 transition-all duration-300 shadow-2xl shadow-cyan-500/20">
+              Start Creating
+            </button>
+
+            <button className="px-8 py-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-300">
+              Explore Tools
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Tools Grid */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.map((tool, index) => (
+            <div
+              key={index}
+              className="group bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl hover:border-cyan-400/40 hover:scale-[1.02] transition-all duration-300 shadow-lg"
+            >
+              <div className="text-5xl mb-4">{tool.icon}</div>
+
+              <h2 className="text-2xl font-bold mb-3 group-hover:text-cyan-300 transition-colors">
+                {tool.name}
+              </h2>
+
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                {tool.desc}
+              </p>
+
+              <button className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500/20 to-green-500/20 border border-cyan-400/20 hover:from-cyan-500 hover:to-green-500 hover:text-black font-semibold transition-all duration-300">
+                Open Tool
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="max-w-6xl mx-auto px-6 py-20">
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
+            <div className="text-5xl mb-4">⚡</div>
+            <h3 className="text-2xl font-bold mb-3">Fast AI</h3>
+            <p className="text-gray-400">
+              Generate content in seconds with modern AI workflows.
+            </p>
+          </div>
+
+          <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
+            <div className="text-5xl mb-4">🔥</div>
+            <h3 className="text-2xl font-bold mb-3">Viral Ready</h3>
+            <p className="text-gray-400">
+              Designed for TikTok, Shorts, Reels, and YouTube creators.
+            </p>
+          </div>
+
+          <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
+            <div className="text-5xl mb-4">💰</div>
+            <h3 className="text-2xl font-bold mb-3">Monetization</h3>
+            <p className="text-gray-400">
+              Build content faster and grow your creator income.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-10 text-center text-gray-500">
+        <p>© 2026 Viral AI Creator Tools Hub</p>
+      </footer>
+    </div>
+  );
 }
-
-/* HEADER */
-.header{
-  text-align:center;
-  padding:30px;
-  background:#111827;
-}
-
-/* NAV */
-.nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  padding:10px;
-}
-
-.nav button{
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#1e293b;
-  color:white;
-  cursor:pointer;
-}
-
-/* TOOL CARD */
-.tool{
-  max-width:800px;
-  margin:20px auto;
-  background:#111827;
-  padding:20px;
-  border-radius:12px;
-}
-
-/* INPUT */
-textarea,input{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  border:none;
-  border-radius:8px;
-  background:#0b1220;
-  color:white;
-}
-
-button.action{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  background:#38bdf8;
-  color:black;
-  cursor:pointer;
-}
-
-.result{
-  margin-top:10px;
-  background:#0b1220;
-  padding:10px;
-  border-radius:8px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-<h1>🧠 VibeCheck AI</h1>
-<p>All-in-One AI Relationship Toolkit</p>
-</div>
-
-<div class="nav">
-<button onclick="show('t1')">Message</button>
-<button onclick="show('t2')">Love</button>
-<button onclick="show('t3')">Emotion</button>
-<button onclick="show('t4')">Red Flag</button>
-<button onclick="show('t5')">Lie</button>
-<button onclick="show('t6')">Reply</button>
-<button onclick="show('t7')">Image</button>
-<button onclick="show('t8')">Bio</button>
-<button onclick="show('t9')">Pickup</button>
-<button onclick="show('t10')">Personality</button>
-</div>
-
-<!-- TOOL 1 -->
-<div id="t1" class="tool">
-<h3>Message Analyzer</h3>
-<textarea id="msg"></textarea>
-<button class="action" onclick="analyzeMsg()">Analyze</button>
-<div class="result" id="r1"></div>
-</div>
-
-<!-- TOOL 2 -->
-<div id="t2" class="tool" style="display:none;">
-<h3>Love Calculator</h3>
-<input id="name1" placeholder="Name 1">
-<input id="name2" placeholder="Name 2">
-<button class="action" onclick="loveCalc()">Calculate</button>
-<div class="result" id="r2"></div>
-</div>
-
-<!-- TOOL 3 -->
-<div id="t3" class="tool" style="display:none;">
-<h3>Emotion Detector</h3>
-<textarea id="emo"></textarea>
-<button class="action" onclick="emotion()">Detect</button>
-<div class="result" id="r3"></div>
-</div>
-
-<!-- TOOL 4 -->
-<div id="t4" class="tool" style="display:none;">
-<h3>Red Flag Detector</h3>
-<textarea id="rf"></textarea>
-<button class="action" onclick="redFlag()">Check</button>
-<div class="result" id="r4"></div>
-</div>
-
-<!-- TOOL 5 -->
-<div id="t5" class="tool" style="display:none;">
-<h3>Lie Detector</h3>
-<textarea id="lie"></textarea>
-<button class="action" onclick="lieCheck()">Analyze</button>
-<div class="result" id="r5"></div>
-</div>
-
-<!-- TOOL 6 -->
-<div id="t6" class="tool" style="display:none;">
-<h3>Reply Generator</h3>
-<textarea id="reply"></textarea>
-<button class="action" onclick="replyGen()">Generate</button>
-<div class="result" id="r6"></div>
-</div>
-
-<!-- TOOL 7 -->
-<div id="t7" class="tool" style="display:none;">
-<h3>Image Detector</h3>
-<input type="file" id="img">
-<button class="action" onclick="imgCheck()">Analyze</button>
-<div class="result" id="r7"></div>
-</div>
-
-<!-- TOOL 8 -->
-<div id="t8" class="tool" style="display:none;">
-<h3>Bio Generator</h3>
-<input id="bio">
-<button class="action" onclick="bioGen()">Generate</button>
-<div class="result" id="r8"></div>
-</div>
-
-<!-- TOOL 9 -->
-<div id="t9" class="tool" style="display:none;">
-<h3>Pickup Lines</h3>
-<button class="action" onclick="pickup()">Generate</button>
-<div class="result" id="r9"></div>
-</div>
-
-<!-- TOOL 10 -->
-<div id="t10" class="tool" style="display:none;">
-<h3>Personality Insight</h3>
-<textarea id="pers"></textarea>
-<button class="action" onclick="personality()">Analyze</button>
-<div class="result" id="r10"></div>
-</div>
-
-<script>
-
-/* NAVIGATION */
-function show(id){
-document.querySelectorAll(".tool").forEach(t=>t.style.display="none");
-document.getElementById(id).style.display="block";
-}
-
-/* TOOL LOGIC */
-function analyzeMsg(){
-let t=msg.value.toLowerCase();
-r1.innerText = t.includes("love") ? "Strong emotional interest detected." : "Mixed signals.";
-}
-
-function loveCalc(){
-let score=Math.floor(Math.random()*100);
-r2.innerText="Compatibility: "+score+"%";
-}
-
-function emotion(){
-r3.innerText="Detected emotion: Neutral / Slightly Positive";
-}
-
-function redFlag(){
-r4.innerText="Possible red flag detected.";
-}
-
-function lieCheck(){
-r5.innerText="Statement shows inconsistencies.";
-}
-
-function replyGen(){
-r6.innerText="You can reply: 'Sounds good, let's talk later.'";
-}
-
-function imgCheck(){
-r7.innerText="Image appears AI-generated (demo logic).";
-}
-
-function bioGen(){
-r8.innerText="Creative bio: Living life with purpose.";
-}
-
-function pickup(){
-r9.innerText="Are you AI? Because you just analyzed my heart.";
-}
-
-function personality(){
-r10.innerText="Personality: Thoughtful and observant.";
-}
-
-</script>
-
-</body>
-</html>
