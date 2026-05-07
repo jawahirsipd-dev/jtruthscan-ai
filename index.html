@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Hub Expandable SaaS</title>
+<title>Creator Hub Pro</title>
 
 <style>
 
@@ -16,7 +16,7 @@ color:white;
 
 .header{
 text-align:center;
-padding:60px 20px;
+padding:50px 20px;
 background:radial-gradient(circle,#0f172a,#020617);
 }
 
@@ -27,76 +27,64 @@ background:linear-gradient(90deg,#38bdf8,#22c55e);
 -webkit-text-fill-color:transparent;
 }
 
-.container{
-max-width:900px;
-margin:auto;
+.search{
+text-align:center;
 padding:20px;
-display:flex;
-flex-direction:column;
-gap:20px;
-}
-
-.tool{
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-border-radius:15px;
-padding:20px;
-}
-
-.title{
-font-size:24px;
-cursor:pointer;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.panel{
-display:none;
-margin-top:15px;
 }
 
 input{
-width:100%;
-padding:10px;
-border-radius:8px;
+width:60%;
+padding:12px;
+border-radius:10px;
 border:none;
 background:#111827;
 color:white;
-margin-bottom:10px;
 }
 
-.option{
+.buttons{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
 padding:10px;
-margin-top:8px;
-border-radius:8px;
-background:#0f172a;
-cursor:pointer;
-border:1px solid rgba(255,255,255,0.1);
-transition:0.2s;
-}
-
-.option:hover{
-background:#38bdf8;
-color:black;
-}
-
-.result{
-margin-top:10px;
-font-size:13px;
-opacity:0.9;
-white-space:pre-wrap;
 }
 
 button{
-width:100%;
-padding:10px;
+padding:10px 15px;
 border:none;
 border-radius:8px;
 background:linear-gradient(90deg,#22c55e,#38bdf8);
 color:white;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.result{
+margin-top:20px;
+background:#0f172a;
+padding:15px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.site{
+margin-top:10px;
+padding:10px;
+background:#111827;
+border-radius:8px;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.site:hover{
+background:#38bdf8;
+color:black;
 }
 
 </style>
@@ -105,180 +93,97 @@ cursor:pointer;
 <body>
 
 <div class="header">
-<h1>🚀 Expandable Creator SaaS</h1>
-<p>Each tool contains 5 AI options inside</p>
+<h1>🚀 Creator Hub Pro</h1>
+<p>All AI tools in one place</p>
 </div>
 
+<!-- SEARCH -->
+<div class="search">
+<input placeholder="Search tools... (video, image, voice)">
+</div>
+
+<!-- BUTTONS -->
+<div class="buttons">
+
+<button onclick="show('video')">🎬 Video AI</button>
+<button onclick="show('image')">🖼️ Image AI</button>
+<button onclick="show('voice')">🎤 Voice AI</button>
+<button onclick="show('seo')">📈 SEO Tools</button>
+<button onclick="show('down')">⬇️ Downloader</button>
+
+</div>
+
+<!-- RESULT -->
 <div class="container">
-
-<!-- VIDEO TOOL -->
-<div class="tool">
-
-<div class="title" onclick="toggle('videoPanel')">
-🎬 Video AI Tools <span>▼</span>
+<div id="output" class="result">
+👉 Select a tool to see 5 websites
 </div>
-
-<div class="panel" id="videoPanel">
-
-<input id="videoInput" placeholder="Enter video idea">
-<button onclick="videoTools()">Generate Options</button>
-
-<div id="videoBox"></div>
-<div class="result" id="videoResult"></div>
-
-</div>
-
-</div>
-
-<!-- IMAGE TOOL -->
-<div class="tool">
-
-<div class="title" onclick="toggle('imagePanel')">
-🖼️ Image AI Tools <span>▼</span>
-</div>
-
-<div class="panel" id="imagePanel">
-
-<input id="imageInput" placeholder="Enter image idea">
-<button onclick="imageTools()">Generate Options</button>
-
-<div id="imageBox"></div>
-<div class="result" id="imageResult"></div>
-
-</div>
-
-</div>
-
-<!-- VOICE TOOL -->
-<div class="tool">
-
-<div class="title" onclick="toggle('voicePanel')">
-🎤 Voice AI Tools <span>▼</span>
-</div>
-
-<div class="panel" id="voicePanel">
-
-<input id="voiceInput" placeholder="Enter voice style">
-<button onclick="voiceTools()">Generate Options</button>
-
-<div id="voiceBox"></div>
-<div class="result" id="voiceResult"></div>
-
-</div>
-
-</div>
-
 </div>
 
 <script>
 
-function toggle(id){
+function show(type){
 
-let el=document.getElementById(id);
+let data = {
 
-el.style.display = (el.style.display==="block") ? "none" : "block";
-
-}
-
-function copy(text){
-navigator.clipboard.writeText(text);
-}
-
-/* VIDEO */
-function videoTools(){
-
-let p=document.getElementById("videoInput").value;
-
-let tools=[
+video:[
 ["PixVerse AI","https://pixverse.ai/"],
-["Luma Dream Machine","https://lumalabs.ai/dream-machine"],
-["Hailuo AI","https://hailuoai.video/"],
+["Luma AI","https://lumalabs.ai/dream-machine"],
 ["Pika Labs","https://pika.art/"],
-["Runway ML","https://runwayml.com/"]
-];
+["Runway ML","https://runwayml.com/"],
+["Hailuo AI","https://hailuoai.video/"]
+],
 
-let box=document.getElementById("videoBox");
-box.innerHTML="";
-
-tools.forEach(t=>{
-let d=document.createElement("div");
-d.className="option";
-d.innerText=t[0];
-
-d.onclick=()=>{
-copy(p);
-document.getElementById("videoResult").innerText=
-"Prompt copied for "+t[0];
-window.open(t[1],"_blank");
-};
-
-box.appendChild(d);
-});
-
-}
-
-/* IMAGE */
-function imageTools(){
-
-let p=document.getElementById("imageInput").value;
-
-let tools=[
+image:[
 ["Leonardo AI","https://leonardo.ai/"],
 ["Mage Space","https://www.mage.space/"],
 ["Playground AI","https://playground.com/"],
 ["Ideogram AI","https://ideogram.ai/"],
 ["Bing Image Creator","https://www.bing.com/images/create"]
-];
+],
 
-let box=document.getElementById("imageBox");
-box.innerHTML="";
-
-tools.forEach(t=>{
-let d=document.createElement("div");
-d.className="option";
-d.innerText=t[0];
-
-d.onclick=()=>{
-copy(p);
-document.getElementById("imageResult").innerText=
-"Prompt copied for "+t[0];
-window.open(t[1],"_blank");
-};
-
-box.appendChild(d);
-});
-
-}
-
-/* VOICE */
-function voiceTools(){
-
-let p=document.getElementById("voiceInput").value;
-
-let tools=[
+voice:[
 ["ElevenLabs","https://elevenlabs.io/"],
 ["PlayHT","https://play.ht/"],
 ["TTSMaker","https://ttsmaker.com/"],
 ["Narakeet","https://www.narakeet.com/"],
 ["FakeYou","https://fakeyou.com/"]
-];
+],
 
-let box=document.getElementById("voiceBox");
-box.innerHTML="";
+seo:[
+["Ahrefs Keywords","https://ahrefs.com/keyword-generator"],
+["Ubersuggest","https://neilpatel.com/ubersuggest/"],
+["KeywordTool","https://keywordtool.io/"],
+["Google Trends","https://trends.google.com/"],
+["AnswerThePublic","https://answerthepublic.com/"]
+],
 
-tools.forEach(t=>{
-let d=document.createElement("div");
-d.className="option";
-d.innerText=t[0];
+down:[
+["SS YouTube","https://ssyoutube.com/"],
+["SnapTik","https://snaptik.app/"],
+["SnapInsta","https://snapinsta.app/"],
+["FDown","https://fdown.net/"],
+["SaveFrom","https://savefrom.net/"]
+]
 
-d.onclick=()=>{
-copy(p);
-document.getElementById("voiceResult").innerText=
-"Prompt copied for "+t[0];
-window.open(t[1],"_blank");
 };
 
-box.appendChild(d);
+let out = document.getElementById("output");
+
+out.innerHTML = "";
+
+data[type].forEach(site=>{
+
+let div=document.createElement("div");
+div.className="site";
+div.innerHTML=site[0];
+
+div.onclick=()=>{
+window.open(site[1],"_blank");
+}
+
+out.appendChild(div);
+
 });
 
 }
