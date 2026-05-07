@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viral AI Creator Hub</title>
+<title>Viral Multi AI Creator Hub</title>
 
 <style>
 
@@ -30,7 +30,6 @@ background:radial-gradient(circle at top,#0f172a,#020617);
 
 .hero h1{
 font-size:65px;
-font-weight:bold;
 background:linear-gradient(90deg,#38bdf8,#22c55e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
@@ -47,13 +46,12 @@ line-height:1.6;
 
 .badge{
 display:inline-block;
-margin-top:20px;
+margin-bottom:20px;
 padding:8px 18px;
 border-radius:30px;
 background:rgba(56,189,248,0.15);
 border:1px solid rgba(56,189,248,0.4);
 color:#38bdf8;
-font-size:14px;
 }
 
 /* TOOLS */
@@ -61,9 +59,9 @@ font-size:14px;
 .tools{
 padding:60px 20px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
 gap:25px;
-max-width:1400px;
+max-width:1500px;
 margin:auto;
 }
 
@@ -88,7 +86,7 @@ margin-bottom:15px;
 }
 
 .card h2{
-font-size:26px;
+font-size:28px;
 margin-bottom:10px;
 }
 
@@ -134,9 +132,29 @@ margin-top:15px;
 padding:15px;
 background:#0f172a;
 border-radius:12px;
-line-height:1.6;
+line-height:1.7;
 white-space:pre-wrap;
-min-height:80px;
+}
+
+.tool-links{
+margin-top:15px;
+display:grid;
+gap:10px;
+}
+
+.tool-links a{
+text-decoration:none;
+padding:12px;
+border-radius:10px;
+background:#111827;
+color:#38bdf8;
+transition:0.3s;
+display:block;
+}
+
+.tool-links a:hover{
+background:#38bdf8;
+color:white;
 }
 
 /* FOOTER */
@@ -158,13 +176,15 @@ margin-top:50px;
 
 <section class="hero">
 
-<div class="badge">🚀 FREE VIRAL AI TOOLS</div>
+<div class="badge">
+🚀 MULTI AI CREATOR HUB
+</div>
 
 <h1>Viral AI Creator Hub</h1>
 
 <p>
-Create viral content using free AI tools for videos, thumbnails,
-SEO, hashtags, scripts, music, images and more.
+Generate AI videos, images, voiceovers, thumbnails, scripts,
+SEO content and more using multiple free AI tools.
 </p>
 
 </section>
@@ -172,28 +192,6 @@ SEO, hashtags, scripts, music, images and more.
 <!-- TOOLS -->
 
 <section class="tools">
-
-<!-- IMAGE -->
-
-<div class="card">
-
-<div class="icon">🖼️</div>
-
-<h2>AI Image Generator</h2>
-
-<p>
-Generate AI image prompts and open free AI image tools instantly.
-</p>
-
-<input type="text" id="imagePrompt" placeholder="Enter image idea">
-
-<button onclick="openImageTool()">
-Generate Image
-</button>
-
-<div class="result" id="imageResult"></div>
-
-</div>
 
 <!-- VIDEO -->
 
@@ -204,170 +202,86 @@ Generate Image
 <h2>AI Video Generator</h2>
 
 <p>
-Create cinematic AI video prompts and open free AI video tools.
+Generate cinematic AI video prompts and use multiple free AI video tools.
 </p>
 
 <input type="text" id="videoPrompt" placeholder="Enter video idea">
 
-<button onclick="openVideoTool()">
-Generate Video
+<button onclick="generateVideo()">
+Generate Video Prompt
 </button>
 
 <div class="result" id="videoResult"></div>
 
-</div>
+<div class="tool-links">
 
-<!-- THUMBNAIL -->
+<a href="https://pixverse.ai/" target="_blank">
+PixVerse AI
+</a>
 
-<div class="card">
+<a href="https://lumalabs.ai/dream-machine" target="_blank">
+Luma Dream Machine
+</a>
 
-<div class="icon">🔥</div>
+<a href="https://hailuoai.video/" target="_blank">
+Hailuo AI
+</a>
 
-<h2>Thumbnail Generator</h2>
+<a href="https://pika.art/" target="_blank">
+Pika Labs
+</a>
 
-<p>
-Create viral thumbnail prompts for YouTube and Shorts.
-</p>
-
-<input type="text" id="thumbPrompt" placeholder="Enter thumbnail topic">
-
-<button onclick="openThumbTool()">
-Generate Thumbnail
-</button>
-
-<div class="result" id="thumbResult"></div>
-
-</div>
-
-<!-- SEO -->
-
-<div class="card">
-
-<div class="icon">📈</div>
-
-<h2>SEO Generator</h2>
-
-<p>
-Generate viral SEO titles and open keyword research tools.
-</p>
-
-<input type="text" id="seoPrompt" placeholder="Enter SEO topic">
-
-<button onclick="openSEOTool()">
-Generate SEO
-</button>
-
-<div class="result" id="seoResult"></div>
+<a href="https://runwayml.com/" target="_blank">
+Runway ML
+</a>
 
 </div>
 
-<!-- DESCRIPTION -->
-
-<div class="card">
-
-<div class="icon">✍️</div>
-
-<h2>Description Generator</h2>
-
-<p>
-Create engaging YouTube descriptions instantly.
-</p>
-
-<input type="text" id="descPrompt" placeholder="Enter video topic">
-
-<button onclick="generateDesc()">
-Generate Description
-</button>
-
-<div class="result" id="descResult"></div>
-
 </div>
 
-<!-- HASHTAGS -->
+<!-- IMAGE -->
 
 <div class="card">
 
-<div class="icon">#️⃣</div>
+<div class="icon">🖼️</div>
 
-<h2>Hashtag Generator</h2>
+<h2>AI Image Generator</h2>
 
 <p>
-Generate trending hashtags for TikTok and YouTube.
+Generate AI image prompts and use multiple image generation tools.
 </p>
 
-<input type="text" id="hashPrompt" placeholder="Enter topic">
+<input type="text" id="imagePrompt" placeholder="Enter image idea">
 
-<button onclick="generateHash()">
-Generate Hashtags
+<button onclick="generateImage()">
+Generate Image Prompt
 </button>
 
-<div class="result" id="hashResult"></div>
+<div class="result" id="imageResult"></div>
+
+<div class="tool-links">
+
+<a href="https://leonardo.ai/" target="_blank">
+Leonardo AI
+</a>
+
+<a href="https://www.mage.space/" target="_blank">
+Mage Space
+</a>
+
+<a href="https://playground.com/" target="_blank">
+Playground AI
+</a>
+
+<a href="https://ideogram.ai/" target="_blank">
+Ideogram AI
+</a>
+
+<a href="https://www.bing.com/images/create" target="_blank">
+Bing Image Creator
+</a>
 
 </div>
-
-<!-- SCRIPT -->
-
-<div class="card">
-
-<div class="icon">🧠</div>
-
-<h2>Script Generator</h2>
-
-<p>
-Create viral Shorts and TikTok video scripts.
-</p>
-
-<input type="text" id="scriptPrompt" placeholder="Enter topic">
-
-<button onclick="generateScript()">
-Generate Script
-</button>
-
-<div class="result" id="scriptResult"></div>
-
-</div>
-
-<!-- MUSIC -->
-
-<div class="card">
-
-<div class="icon">🎵</div>
-
-<h2>Free Music Search</h2>
-
-<p>
-Search free royalty-free music websites instantly.
-</p>
-
-<input type="text" id="musicPrompt" placeholder="Enter mood">
-
-<button onclick="openMusicTool()">
-Search Music
-</button>
-
-<div class="result" id="musicResult"></div>
-
-</div>
-
-<!-- VIDEO DOWNLOADER -->
-
-<div class="card">
-
-<div class="icon">⬇️</div>
-
-<h2>Video Downloader</h2>
-
-<p>
-Open free video downloader websites instantly.
-</p>
-
-<input type="text" id="downloadPrompt" placeholder="Paste video URL">
-
-<button onclick="openDownloader()">
-Open Downloader
-</button>
-
-<div class="result" id="downloadResult"></div>
 
 </div>
 
@@ -380,16 +294,142 @@ Open Downloader
 <h2>AI Voice Generator</h2>
 
 <p>
-Generate voiceover ideas and open free AI voice tools.
+Generate voiceover ideas and use free AI voice generation tools.
 </p>
 
 <input type="text" id="voicePrompt" placeholder="Enter voice style">
 
-<button onclick="openVoiceTool()">
-Generate Voice
+<button onclick="generateVoice()">
+Generate Voice Idea
 </button>
 
 <div class="result" id="voiceResult"></div>
+
+<div class="tool-links">
+
+<a href="https://elevenlabs.io/" target="_blank">
+ElevenLabs
+</a>
+
+<a href="https://play.ht/" target="_blank">
+PlayHT
+</a>
+
+<a href="https://ttsmaker.com/" target="_blank">
+TTSMaker
+</a>
+
+<a href="https://www.narakeet.com/" target="_blank">
+Narakeet
+</a>
+
+<a href="https://fakeyou.com/" target="_blank">
+FakeYou
+</a>
+
+</div>
+
+</div>
+
+<!-- THUMBNAIL -->
+
+<div class="card">
+
+<div class="icon">🔥</div>
+
+<h2>Thumbnail Generator</h2>
+
+<p>
+Generate viral thumbnail prompts for YouTube and Shorts.
+</p>
+
+<input type="text" id="thumbPrompt" placeholder="Enter thumbnail topic">
+
+<button onclick="generateThumb()">
+Generate Thumbnail Prompt
+</button>
+
+<div class="result" id="thumbResult"></div>
+
+<div class="tool-links">
+
+<a href="https://www.canva.com/" target="_blank">
+Canva
+</a>
+
+<a href="https://www.photopea.com/" target="_blank">
+Photopea
+</a>
+
+</div>
+
+</div>
+
+<!-- SEO -->
+
+<div class="card">
+
+<div class="icon">📈</div>
+
+<h2>SEO Generator</h2>
+
+<p>
+Generate viral SEO titles and keyword ideas.
+</p>
+
+<input type="text" id="seoPrompt" placeholder="Enter SEO topic">
+
+<button onclick="generateSEO()">
+Generate SEO
+</button>
+
+<div class="result" id="seoResult"></div>
+
+<div class="tool-links">
+
+<a href="https://ahrefs.com/keyword-generator" target="_blank">
+Ahrefs Keyword Generator
+</a>
+
+<a href="https://keywordtool.io/" target="_blank">
+KeywordTool.io
+</a>
+
+</div>
+
+</div>
+
+<!-- MUSIC -->
+
+<div class="card">
+
+<div class="icon">🎵</div>
+
+<h2>Free Music Search</h2>
+
+<p>
+Search royalty-free background music.
+</p>
+
+<input type="text" id="musicPrompt" placeholder="Enter music mood">
+
+<button onclick="generateMusic()">
+Search Music
+</button>
+
+<div class="result" id="musicResult"></div>
+
+<div class="tool-links">
+
+<a href="https://pixabay.com/music/" target="_blank">
+Pixabay Music
+</a>
+
+<a href="https://mixkit.co/" target="_blank">
+Mixkit
+</a>
+
+</div>
 
 </div>
 
@@ -398,155 +438,105 @@ Generate Voice
 <!-- FOOTER -->
 
 <div class="footer">
-© 2026 Viral AI Creator Hub
+© 2026 Viral Multi AI Creator Hub
 </div>
 
 <script>
 
-/* IMAGE */
-
-function openImageTool(){
-
-let prompt=document.getElementById("imagePrompt").value;
-
-document.getElementById("imageResult").innerText=
-"Prompt copied:\n\nUltra realistic "+prompt+
-", cinematic lighting, detailed, 8k.";
-
-navigator.clipboard.writeText(prompt);
-
-window.open("https://www.mage.space/","_blank");
-
-}
-
 /* VIDEO */
 
-function openVideoTool(){
+function generateVideo(){
 
 let prompt=document.getElementById("videoPrompt").value;
 
-document.getElementById("videoResult").innerText=
-"Video prompt copied:\n\nCinematic AI video about "+prompt+
-", dramatic movement, realistic lighting.";
+let result=
+"Cinematic AI video about "+prompt+
+", ultra realistic, dramatic movement, detailed lighting, viral TikTok style.";
 
-navigator.clipboard.writeText(prompt);
+document.getElementById("videoResult").innerText=result;
 
-window.open("https://pixverse.ai/","_blank");
-
-}
-
-/* THUMB */
-
-function openThumbTool(){
-
-let prompt=document.getElementById("thumbPrompt").value;
-
-document.getElementById("thumbResult").innerText=
-"Thumbnail prompt copied:\n\nYouTube thumbnail about "+prompt+
-", shocked face, glowing text, cinematic style.";
-
-navigator.clipboard.writeText(prompt);
-
-window.open("https://www.canva.com/","_blank");
+navigator.clipboard.writeText(result);
 
 }
 
-/* SEO */
+/* IMAGE */
 
-function openSEOTool(){
+function generateImage(){
 
-let topic=document.getElementById("seoPrompt").value;
+let prompt=document.getElementById("imagePrompt").value;
 
-document.getElementById("seoResult").innerText=
-"SEO Titles:\n\n🔥 "+topic+" EXPOSED 😱\n"+
-"Top 10 "+topic+" Secrets Nobody Knows\n"+
-"How "+topic+" Went Viral Overnight";
+let result=
+"Ultra realistic "+prompt+
+", cinematic lighting, 8k, highly detailed, trending AI art.";
 
-navigator.clipboard.writeText(topic);
+document.getElementById("imageResult").innerText=result;
 
-window.open("https://ahrefs.com/keyword-generator","_blank");
-
-}
-
-/* DESCRIPTION */
-
-function generateDesc(){
-
-let topic=document.getElementById("descPrompt").value;
-
-document.getElementById("descResult").innerText=
-"This video reveals everything about "+topic+
-". Watch till the end for shocking details and viral moments.";
-
-}
-
-/* HASHTAGS */
-
-function generateHash(){
-
-let topic=document.getElementById("hashPrompt").value;
-
-document.getElementById("hashResult").innerText=
-"#"+topic.replace(/ /g,"")+" #viral #fyp #trending #shorts #youtube";
-
-}
-
-/* SCRIPT */
-
-function generateScript(){
-
-let topic=document.getElementById("scriptPrompt").value;
-
-document.getElementById("scriptResult").innerText=
-"HOOK: You won't believe this about "+topic+" 😳\n\n"+
-"MAIN: Here is the shocking truth behind "+topic+
-"...\n\nENDING: Follow for more viral content!";
-
-}
-
-/* MUSIC */
-
-function openMusicTool(){
-
-let mood=document.getElementById("musicPrompt").value;
-
-document.getElementById("musicResult").innerText=
-"Searching free music for "+mood+" mood.";
-
-navigator.clipboard.writeText(mood);
-
-window.open("https://pixabay.com/music/","_blank");
-
-}
-
-/* DOWNLOADER */
-
-function openDownloader(){
-
-let url=document.getElementById("downloadPrompt").value;
-
-document.getElementById("downloadResult").innerText=
-"Opening downloader for:\n\n"+url;
-
-navigator.clipboard.writeText(url);
-
-window.open("https://ssyoutube.com/en","_blank");
+navigator.clipboard.writeText(result);
 
 }
 
 /* VOICE */
 
-function openVoiceTool(){
+function generateVoice(){
 
-let voice=document.getElementById("voicePrompt").value;
+let prompt=document.getElementById("voicePrompt").value;
 
-document.getElementById("voiceResult").innerText=
-"AI voice style copied:\n\n"+voice+
-"\n\nOpening free AI voice tool.";
+let result=
+"AI voice style: "+prompt+
+", emotional storytelling tone, cinematic narration, viral creator style.";
 
-navigator.clipboard.writeText(voice);
+document.getElementById("voiceResult").innerText=result;
 
-window.open("https://elevenlabs.io/","_blank");
+navigator.clipboard.writeText(result);
+
+}
+
+/* THUMB */
+
+function generateThumb(){
+
+let prompt=document.getElementById("thumbPrompt").value;
+
+let result=
+"YouTube thumbnail about "+prompt+
+", shocked face, glowing text, dramatic expression, viral clickbait style.";
+
+document.getElementById("thumbResult").innerText=result;
+
+navigator.clipboard.writeText(result);
+
+}
+
+/* SEO */
+
+function generateSEO(){
+
+let prompt=document.getElementById("seoPrompt").value;
+
+let result=
+"🔥 "+prompt+" EXPOSED 😱\n"+
+"Top 10 "+prompt+" Secrets Nobody Knows\n"+
+"How "+prompt+" Went Viral Overnight";
+
+document.getElementById("seoResult").innerText=result;
+
+navigator.clipboard.writeText(result);
+
+}
+
+/* MUSIC */
+
+function generateMusic(){
+
+let prompt=document.getElementById("musicPrompt").value;
+
+let result=
+"Searching royalty-free music for: "+prompt+
+"\n\nSuggested styles:\n- Cinematic Beat\n- Emotional Trap\n- Viral TikTok Sound";
+
+document.getElementById("musicResult").innerText=result;
+
+navigator.clipboard.writeText(result);
 
 }
 
