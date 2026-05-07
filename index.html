@@ -3,165 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viral Multi AI Creator Hub</title>
+<title>Creator SaaS Hub Pro</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial;
 background:#050816;
 color:white;
-overflow-x:hidden;
 }
 
-/* HERO */
-
-.hero{
+.header{
 text-align:center;
-padding:90px 20px;
-background:radial-gradient(circle at top,#0f172a,#020617);
+padding:70px 20px;
+background:radial-gradient(circle,#0f172a,#020617);
 }
 
-.hero h1{
-font-size:65px;
+.header h1{
+font-size:55px;
 background:linear-gradient(90deg,#38bdf8,#22c55e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:20px;
 }
 
-.hero p{
-font-size:20px;
-opacity:0.8;
-max-width:750px;
+.container{
+max-width:1200px;
 margin:auto;
-line-height:1.6;
-}
-
-.badge{
-display:inline-block;
-margin-bottom:20px;
-padding:8px 18px;
-border-radius:30px;
-background:rgba(56,189,248,0.15);
-border:1px solid rgba(56,189,248,0.4);
-color:#38bdf8;
-}
-
-/* TOOLS */
-
-.tools{
-padding:60px 20px;
+padding:20px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-gap:25px;
-max-width:1500px;
-margin:auto;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
 }
 
 .card{
 background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
 border:1px solid rgba(255,255,255,0.1);
-padding:25px;
-border-radius:22px;
-backdrop-filter:blur(12px);
-transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-10px);
-border-color:#38bdf8;
-box-shadow:0 0 25px rgba(56,189,248,0.3);
-}
-
-.icon{
-font-size:55px;
-margin-bottom:15px;
-}
-
-.card h2{
-font-size:28px;
+h2{
 margin-bottom:10px;
-}
-
-.card p{
-opacity:0.7;
-line-height:1.6;
-margin-bottom:15px;
 }
 
 input{
 width:100%;
-padding:14px;
+padding:10px;
 border:none;
-border-radius:12px;
+border-radius:8px;
+margin-bottom:10px;
 background:#111827;
 color:white;
-font-size:15px;
-margin-top:10px;
-outline:none;
 }
 
 button{
 width:100%;
-margin-top:15px;
-padding:14px;
+padding:10px;
 border:none;
-border-radius:12px;
+border-radius:8px;
 background:linear-gradient(90deg,#22c55e,#38bdf8);
 color:white;
-font-size:15px;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.03);
-box-shadow:0 0 20px rgba(56,189,248,0.4);
 }
 
 .result{
-margin-top:15px;
-padding:15px;
+margin-top:10px;
+padding:10px;
 background:#0f172a;
-border-radius:12px;
-line-height:1.7;
-white-space:pre-wrap;
-}
-
-.tool-links{
-margin-top:15px;
-display:grid;
-gap:10px;
-}
-
-.tool-links a{
-text-decoration:none;
-padding:12px;
 border-radius:10px;
-background:#111827;
+white-space:pre-wrap;
+font-size:13px;
+}
+
+/* PRO LOCK */
+
+.lock{
+background:rgba(255,0,0,0.1);
+border:1px solid rgba(255,0,0,0.3);
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+text-align:center;
+}
+
+.lock button{
+background:#ef4444;
+margin-top:10px;
+}
+
+/* AFFILIATE */
+
+.affiliate{
+margin-top:10px;
+padding:10px;
+border-radius:10px;
+background:#0f172a;
+border:1px solid rgba(56,189,248,0.3);
+}
+
+.affiliate a{
 color:#38bdf8;
-transition:0.3s;
-display:block;
+text-decoration:none;
 }
 
-.tool-links a:hover{
-background:#38bdf8;
-color:white;
-}
+/* ADS AREA */
 
-/* FOOTER */
+.ads{
+margin:20px auto;
+max-width:1100px;
+padding:20px;
+text-align:center;
+background:#111827;
+border-radius:15px;
+border:1px dashed #38bdf8;
+}
 
 .footer{
 text-align:center;
-padding:40px 20px;
+padding:40px;
 opacity:0.6;
 border-top:1px solid rgba(255,255,255,0.1);
 margin-top:50px;
@@ -172,371 +133,168 @@ margin-top:50px;
 
 <body>
 
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="badge">
-🚀 MULTI AI CREATOR HUB
+<div class="header">
+<h1>🚀 Creator SaaS Hub Pro</h1>
+<p>All-in-one AI tools + monetized creator platform</p>
 </div>
 
-<h1>Viral AI Creator Hub</h1>
+<!-- ADS PLACEHOLDER -->
+<div class="ads">
+🔥 AdSense Ad Space (Insert your Ad Code here)
+</div>
 
-<p>
-Generate AI videos, images, voiceovers, thumbnails, scripts,
-SEO content and more using multiple free AI tools.
-</p>
-
-</section>
-
-<!-- TOOLS -->
-
-<section class="tools">
+<div class="container">
 
 <!-- VIDEO -->
-
 <div class="card">
+<h2>🎬 AI Video Generator</h2>
+<input id="video" placeholder="Enter video idea">
+<button onclick="genVideo()">Generate</button>
+<div class="result" id="videoR"></div>
 
-<div class="icon">🎬</div>
-
-<h2>AI Video Generator</h2>
-
-<p>
-Generate cinematic AI video prompts and use multiple free AI video tools.
-</p>
-
-<input type="text" id="videoPrompt" placeholder="Enter video idea">
-
-<button onclick="generateVideo()">
-Generate Video Prompt
-</button>
-
-<div class="result" id="videoResult"></div>
-
-<div class="tool-links">
-
-<a href="https://pixverse.ai/" target="_blank">
-PixVerse AI
-</a>
-
-<a href="https://lumalabs.ai/dream-machine" target="_blank">
-Luma Dream Machine
-</a>
-
-<a href="https://hailuoai.video/" target="_blank">
-Hailuo AI
-</a>
-
-<a href="https://pika.art/" target="_blank">
-Pika Labs
-</a>
-
-<a href="https://runwayml.com/" target="_blank">
-Runway ML
-</a>
-
+<div class="affiliate">
+🔗 Recommended:
+<a href="https://pixverse.ai/" target="_blank">PixVerse AI</a>
 </div>
-
 </div>
 
 <!-- IMAGE -->
-
 <div class="card">
+<h2>🖼️ AI Image Generator</h2>
+<input id="image" placeholder="Enter image idea">
+<button onclick="genImage()">Generate</button>
+<div class="result" id="imageR"></div>
 
-<div class="icon">🖼️</div>
-
-<h2>AI Image Generator</h2>
-
-<p>
-Generate AI image prompts and use multiple image generation tools.
-</p>
-
-<input type="text" id="imagePrompt" placeholder="Enter image idea">
-
-<button onclick="generateImage()">
-Generate Image Prompt
-</button>
-
-<div class="result" id="imageResult"></div>
-
-<div class="tool-links">
-
-<a href="https://leonardo.ai/" target="_blank">
-Leonardo AI
-</a>
-
-<a href="https://www.mage.space/" target="_blank">
-Mage Space
-</a>
-
-<a href="https://playground.com/" target="_blank">
-Playground AI
-</a>
-
-<a href="https://ideogram.ai/" target="_blank">
-Ideogram AI
-</a>
-
-<a href="https://www.bing.com/images/create" target="_blank">
-Bing Image Creator
-</a>
-
+<div class="affiliate">
+🔗 Recommended:
+<a href="https://leonardo.ai/" target="_blank">Leonardo AI</a>
 </div>
-
 </div>
 
 <!-- VOICE -->
-
 <div class="card">
+<h2>🎤 AI Voice Generator</h2>
+<input id="voice" placeholder="Enter voice style">
+<button onclick="genVoice()">Generate</button>
+<div class="result" id="voiceR"></div>
 
-<div class="icon">🎤</div>
-
-<h2>AI Voice Generator</h2>
-
-<p>
-Generate voiceover ideas and use free AI voice generation tools.
-</p>
-
-<input type="text" id="voicePrompt" placeholder="Enter voice style">
-
-<button onclick="generateVoice()">
-Generate Voice Idea
-</button>
-
-<div class="result" id="voiceResult"></div>
-
-<div class="tool-links">
-
-<a href="https://elevenlabs.io/" target="_blank">
-ElevenLabs
-</a>
-
-<a href="https://play.ht/" target="_blank">
-PlayHT
-</a>
-
-<a href="https://ttsmaker.com/" target="_blank">
-TTSMaker
-</a>
-
-<a href="https://www.narakeet.com/" target="_blank">
-Narakeet
-</a>
-
-<a href="https://fakeyou.com/" target="_blank">
-FakeYou
-</a>
-
+<div class="affiliate">
+🔗 Recommended:
+<a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a>
 </div>
-
-</div>
-
-<!-- THUMBNAIL -->
-
-<div class="card">
-
-<div class="icon">🔥</div>
-
-<h2>Thumbnail Generator</h2>
-
-<p>
-Generate viral thumbnail prompts for YouTube and Shorts.
-</p>
-
-<input type="text" id="thumbPrompt" placeholder="Enter thumbnail topic">
-
-<button onclick="generateThumb()">
-Generate Thumbnail Prompt
-</button>
-
-<div class="result" id="thumbResult"></div>
-
-<div class="tool-links">
-
-<a href="https://www.canva.com/" target="_blank">
-Canva
-</a>
-
-<a href="https://www.photopea.com/" target="_blank">
-Photopea
-</a>
-
-</div>
-
 </div>
 
 <!-- SEO -->
-
 <div class="card">
-
-<div class="icon">📈</div>
-
-<h2>SEO Generator</h2>
-
-<p>
-Generate viral SEO titles and keyword ideas.
-</p>
-
-<input type="text" id="seoPrompt" placeholder="Enter SEO topic">
-
-<button onclick="generateSEO()">
-Generate SEO
-</button>
-
-<div class="result" id="seoResult"></div>
-
-<div class="tool-links">
-
-<a href="https://ahrefs.com/keyword-generator" target="_blank">
-Ahrefs Keyword Generator
-</a>
-
-<a href="https://keywordtool.io/" target="_blank">
-KeywordTool.io
-</a>
-
+<h2>📈 SEO Generator</h2>
+<input id="seo" placeholder="Enter topic">
+<button onclick="genSEO()">Generate</button>
+<div class="result" id="seoR"></div>
 </div>
 
+<!-- HASHTAGS -->
+<div class="card">
+<h2>#️⃣ Hashtag Generator</h2>
+<input id="tag" placeholder="Enter topic">
+<button onclick="genTag()">Generate</button>
+<div class="result" id="tagR"></div>
 </div>
 
 <!-- MUSIC -->
-
 <div class="card">
+<h2>🎵 Free Music</h2>
+<button onclick="music()">Open Music Tools</button>
+<div class="result" id="musicR"></div>
 
-<div class="icon">🎵</div>
+<div class="affiliate">
+🔗 Free Sources:
+<a href="https://pixabay.com/music/" target="_blank">Pixabay Music</a>
+</div>
+</div>
 
-<h2>Free Music Search</h2>
+<!-- DOWNLOADER -->
+<div class="card">
+<h2>⬇️ Video Downloader</h2>
+<input id="url" placeholder="Paste video link">
+<button onclick="down()">Open Downloader Tools</button>
+<div class="result" id="downR"></div>
+</div>
 
-<p>
-Search royalty-free background music.
-</p>
+<!-- PRO LOCK SYSTEM -->
+<div class="card">
+<h2>💎 Pro Upgrade</h2>
+<p>Unlock premium AI tools & unlimited usage</p>
 
-<input type="text" id="musicPrompt" placeholder="Enter music mood">
-
-<button onclick="generateMusic()">
-Search Music
+<div class="lock">
+🚫 Premium Feature Locked
+<button onclick="alert('Payment system coming soon')">
+Upgrade to Pro ($5/month)
 </button>
-
-<div class="result" id="musicResult"></div>
-
-<div class="tool-links">
-
-<a href="https://pixabay.com/music/" target="_blank">
-Pixabay Music
-</a>
-
-<a href="https://mixkit.co/" target="_blank">
-Mixkit
-</a>
-
 </div>
 
 </div>
 
-</section>
-
-<!-- FOOTER -->
+</div>
 
 <div class="footer">
-© 2026 Viral Multi AI Creator Hub
+© 2026 Creator SaaS Hub Pro
 </div>
 
 <script>
 
 /* VIDEO */
-
-function generateVideo(){
-
-let prompt=document.getElementById("videoPrompt").value;
-
-let result=
-"Cinematic AI video about "+prompt+
-", ultra realistic, dramatic movement, detailed lighting, viral TikTok style.";
-
-document.getElementById("videoResult").innerText=result;
-
-navigator.clipboard.writeText(result);
-
+function genVideo(){
+let v=document.getElementById("video").value;
+document.getElementById("videoR").innerText=
+"Cinematic AI video: "+v+"\nUltra realistic, trending style, 4K output";
 }
 
 /* IMAGE */
-
-function generateImage(){
-
-let prompt=document.getElementById("imagePrompt").value;
-
-let result=
-"Ultra realistic "+prompt+
-", cinematic lighting, 8k, highly detailed, trending AI art.";
-
-document.getElementById("imageResult").innerText=result;
-
-navigator.clipboard.writeText(result);
-
+function genImage(){
+let v=document.getElementById("image").value;
+document.getElementById("imageR").innerText=
+"Ultra realistic image: "+v+"\n8K, cinematic lighting, detailed";
 }
 
 /* VOICE */
-
-function generateVoice(){
-
-let prompt=document.getElementById("voicePrompt").value;
-
-let result=
-"AI voice style: "+prompt+
-", emotional storytelling tone, cinematic narration, viral creator style.";
-
-document.getElementById("voiceResult").innerText=result;
-
-navigator.clipboard.writeText(result);
-
-}
-
-/* THUMB */
-
-function generateThumb(){
-
-let prompt=document.getElementById("thumbPrompt").value;
-
-let result=
-"YouTube thumbnail about "+prompt+
-", shocked face, glowing text, dramatic expression, viral clickbait style.";
-
-document.getElementById("thumbResult").innerText=result;
-
-navigator.clipboard.writeText(result);
-
+function genVoice(){
+let v=document.getElementById("voice").value;
+document.getElementById("voiceR").innerText=
+"AI Voice: "+v+"\nEmotional, cinematic narration style";
 }
 
 /* SEO */
+function genSEO(){
+let v=document.getElementById("seo").value;
+document.getElementById("seoR").innerText=
+"🔥 "+v+" EXPOSED\nTop secrets nobody knows\nViral trending topic ideas";
+}
 
-function generateSEO(){
-
-let prompt=document.getElementById("seoPrompt").value;
-
-let result=
-"🔥 "+prompt+" EXPOSED 😱\n"+
-"Top 10 "+prompt+" Secrets Nobody Knows\n"+
-"How "+prompt+" Went Viral Overnight";
-
-document.getElementById("seoResult").innerText=result;
-
-navigator.clipboard.writeText(result);
-
+/* HASHTAG */
+function genTag(){
+let v=document.getElementById("tag").value;
+document.getElementById("tagR").innerText=
+"#"+v+" #viral #trending #fyp #shorts #youtube #tiktok";
 }
 
 /* MUSIC */
+function music(){
+document.getElementById("musicR").innerHTML=
+"🎵 Open free music sites:\n"+
+"<a href='https://pixabay.com/music/' target='_blank'>Pixabay</a><br>"+
+"<a href='https://mixkit.co/free-stock-music/' target='_blank'>Mixkit</a>";
+}
 
-function generateMusic(){
+/* DOWNLOADER */
+function down(){
+let u=document.getElementById("url").value;
 
-let prompt=document.getElementById("musicPrompt").value;
-
-let result=
-"Searching royalty-free music for: "+prompt+
-"\n\nSuggested styles:\n- Cinematic Beat\n- Emotional Trap\n- Viral TikTok Sound";
-
-document.getElementById("musicResult").innerText=result;
-
-navigator.clipboard.writeText(result);
+document.getElementById("downR").innerHTML=
+"Open tools:\n"+
+"<a href='https://ssyoutube.com/' target='_blank'>YouTube</a><br>"+
+"<a href='https://snaptik.app/' target='_blank'>TikTok</a><br>"+
+"<a href='https://snapinsta.app/' target='_blank'>Instagram</a><br>"+
+"<a href='https://fdown.net/' target='_blank'>Facebook</a>";
 
 }
 
