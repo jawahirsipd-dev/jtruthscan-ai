@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator SaaS Hub Pro</title>
+<title>Creator Hub Pro (5 AI Options)</title>
 
 <style>
 
@@ -16,23 +16,23 @@ color:white;
 
 .header{
 text-align:center;
-padding:70px 20px;
+padding:60px 20px;
 background:radial-gradient(circle,#0f172a,#020617);
 }
 
 .header h1{
-font-size:55px;
+font-size:50px;
 background:linear-gradient(90deg,#38bdf8,#22c55e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
 .container{
-max-width:1200px;
+max-width:1100px;
 margin:auto;
 padding:20px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:20px;
 }
 
@@ -41,10 +41,6 @@ background:rgba(255,255,255,0.05);
 padding:20px;
 border-radius:15px;
 border:1px solid rgba(255,255,255,0.1);
-}
-
-h2{
-margin-bottom:10px;
 }
 
 input{
@@ -68,64 +64,26 @@ font-weight:bold;
 cursor:pointer;
 }
 
+.option{
+margin-top:8px;
+padding:10px;
+border-radius:8px;
+background:#0f172a;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.1);
+transition:0.2s;
+}
+
+.option:hover{
+background:#38bdf8;
+color:black;
+}
+
 .result{
 margin-top:10px;
-padding:10px;
-background:#0f172a;
-border-radius:10px;
-white-space:pre-wrap;
 font-size:13px;
-}
-
-/* PRO LOCK */
-
-.lock{
-background:rgba(255,0,0,0.1);
-border:1px solid rgba(255,0,0,0.3);
-padding:10px;
-border-radius:10px;
-margin-top:10px;
-text-align:center;
-}
-
-.lock button{
-background:#ef4444;
-margin-top:10px;
-}
-
-/* AFFILIATE */
-
-.affiliate{
-margin-top:10px;
-padding:10px;
-border-radius:10px;
-background:#0f172a;
-border:1px solid rgba(56,189,248,0.3);
-}
-
-.affiliate a{
-color:#38bdf8;
-text-decoration:none;
-}
-
-/* ADS AREA */
-
-.ads{
-margin:20px auto;
-max-width:1100px;
-padding:20px;
-text-align:center;
-background:#111827;
-border-radius:15px;
-border:1px dashed #38bdf8;
-}
-
-.footer{
-text-align:center;
-padding:40px;
-opacity:0.6;
-border-top:1px solid rgba(255,255,255,0.1);
-margin-top:50px;
+white-space:pre-wrap;
+opacity:0.9;
 }
 
 </style>
@@ -134,167 +92,146 @@ margin-top:50px;
 <body>
 
 <div class="header">
-<h1>🚀 Creator SaaS Hub Pro</h1>
-<p>All-in-one AI tools + monetized creator platform</p>
-</div>
-
-<!-- ADS PLACEHOLDER -->
-<div class="ads">
-🔥 AdSense Ad Space (Insert your Ad Code here)
+<h1>🚀 Creator Hub Pro</h1>
+<p>5 AI Options for Every Tool</p>
 </div>
 
 <div class="container">
 
 <!-- VIDEO -->
 <div class="card">
-<h2>🎬 AI Video Generator</h2>
-<input id="video" placeholder="Enter video idea">
-<button onclick="genVideo()">Generate</button>
-<div class="result" id="videoR"></div>
+<h2>🎬 Video AI (5 Options)</h2>
+<input id="videoInput" placeholder="Enter video idea">
+<button onclick="videoAI()">Generate</button>
 
-<div class="affiliate">
-🔗 Recommended:
-<a href="https://pixverse.ai/" target="_blank">PixVerse AI</a>
-</div>
+<div id="videoBox"></div>
+<div class="result" id="videoResult"></div>
 </div>
 
 <!-- IMAGE -->
 <div class="card">
-<h2>🖼️ AI Image Generator</h2>
-<input id="image" placeholder="Enter image idea">
-<button onclick="genImage()">Generate</button>
-<div class="result" id="imageR"></div>
+<h2>🖼️ Image AI (5 Options)</h2>
+<input id="imageInput" placeholder="Enter image idea">
+<button onclick="imageAI()">Generate</button>
 
-<div class="affiliate">
-🔗 Recommended:
-<a href="https://leonardo.ai/" target="_blank">Leonardo AI</a>
-</div>
+<div id="imageBox"></div>
+<div class="result" id="imageResult"></div>
 </div>
 
 <!-- VOICE -->
 <div class="card">
-<h2>🎤 AI Voice Generator</h2>
-<input id="voice" placeholder="Enter voice style">
-<button onclick="genVoice()">Generate</button>
-<div class="result" id="voiceR"></div>
+<h2>🎤 Voice AI (5 Options)</h2>
+<input id="voiceInput" placeholder="Enter voice style">
+<button onclick="voiceAI()">Generate</button>
 
-<div class="affiliate">
-🔗 Recommended:
-<a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a>
-</div>
+<div id="voiceBox"></div>
+<div class="result" id="voiceResult"></div>
 </div>
 
-<!-- SEO -->
-<div class="card">
-<h2>📈 SEO Generator</h2>
-<input id="seo" placeholder="Enter topic">
-<button onclick="genSEO()">Generate</button>
-<div class="result" id="seoR"></div>
-</div>
-
-<!-- HASHTAGS -->
-<div class="card">
-<h2>#️⃣ Hashtag Generator</h2>
-<input id="tag" placeholder="Enter topic">
-<button onclick="genTag()">Generate</button>
-<div class="result" id="tagR"></div>
-</div>
-
-<!-- MUSIC -->
-<div class="card">
-<h2>🎵 Free Music</h2>
-<button onclick="music()">Open Music Tools</button>
-<div class="result" id="musicR"></div>
-
-<div class="affiliate">
-🔗 Free Sources:
-<a href="https://pixabay.com/music/" target="_blank">Pixabay Music</a>
-</div>
-</div>
-
-<!-- DOWNLOADER -->
-<div class="card">
-<h2>⬇️ Video Downloader</h2>
-<input id="url" placeholder="Paste video link">
-<button onclick="down()">Open Downloader Tools</button>
-<div class="result" id="downR"></div>
-</div>
-
-<!-- PRO LOCK SYSTEM -->
-<div class="card">
-<h2>💎 Pro Upgrade</h2>
-<p>Unlock premium AI tools & unlimited usage</p>
-
-<div class="lock">
-🚫 Premium Feature Locked
-<button onclick="alert('Payment system coming soon')">
-Upgrade to Pro ($5/month)
-</button>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-© 2026 Creator SaaS Hub Pro
 </div>
 
 <script>
 
-/* VIDEO */
-function genVideo(){
-let v=document.getElementById("video").value;
-document.getElementById("videoR").innerText=
-"Cinematic AI video: "+v+"\nUltra realistic, trending style, 4K output";
+function copy(t){
+navigator.clipboard.writeText(t);
 }
 
-/* IMAGE */
-function genImage(){
-let v=document.getElementById("image").value;
-document.getElementById("imageR").innerText=
-"Ultra realistic image: "+v+"\n8K, cinematic lighting, detailed";
+/* VIDEO AI */
+function videoAI(){
+
+let p=document.getElementById("videoInput").value;
+
+let tools=[
+["PixVerse AI","https://pixverse.ai/"],
+["Luma Dream Machine","https://lumalabs.ai/dream-machine"],
+["Hailuo AI","https://hailuoai.video/"],
+["Pika Labs","https://pika.art/"],
+["Runway ML","https://runwayml.com/"]
+];
+
+let box=document.getElementById("videoBox");
+box.innerHTML="";
+
+tools.forEach(t=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=t[0];
+
+d.onclick=()=>{
+copy(p);
+document.getElementById("videoResult").innerText=
+"Prompt copied for "+t[0];
+window.open(t[1],"_blank");
+};
+
+box.appendChild(d);
+});
+
 }
 
-/* VOICE */
-function genVoice(){
-let v=document.getElementById("voice").value;
-document.getElementById("voiceR").innerText=
-"AI Voice: "+v+"\nEmotional, cinematic narration style";
+/* IMAGE AI */
+function imageAI(){
+
+let p=document.getElementById("imageInput").value;
+
+let tools=[
+["Leonardo AI","https://leonardo.ai/"],
+["Mage Space","https://www.mage.space/"],
+["Playground AI","https://playground.com/"],
+["Ideogram AI","https://ideogram.ai/"],
+["Bing Image Creator","https://www.bing.com/images/create"]
+];
+
+let box=document.getElementById("imageBox");
+box.innerHTML="";
+
+tools.forEach(t=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=t[0];
+
+d.onclick=()=>{
+copy(p);
+document.getElementById("imageResult").innerText=
+"Prompt copied for "+t[0];
+window.open(t[1],"_blank");
+};
+
+box.appendChild(d);
+});
+
 }
 
-/* SEO */
-function genSEO(){
-let v=document.getElementById("seo").value;
-document.getElementById("seoR").innerText=
-"🔥 "+v+" EXPOSED\nTop secrets nobody knows\nViral trending topic ideas";
-}
+/* VOICE AI */
+function voiceAI(){
 
-/* HASHTAG */
-function genTag(){
-let v=document.getElementById("tag").value;
-document.getElementById("tagR").innerText=
-"#"+v+" #viral #trending #fyp #shorts #youtube #tiktok";
-}
+let p=document.getElementById("voiceInput").value;
 
-/* MUSIC */
-function music(){
-document.getElementById("musicR").innerHTML=
-"🎵 Open free music sites:\n"+
-"<a href='https://pixabay.com/music/' target='_blank'>Pixabay</a><br>"+
-"<a href='https://mixkit.co/free-stock-music/' target='_blank'>Mixkit</a>";
-}
+let tools=[
+["ElevenLabs","https://elevenlabs.io/"],
+["PlayHT","https://play.ht/"],
+["TTSMaker","https://ttsmaker.com/"],
+["Narakeet","https://www.narakeet.com/"],
+["FakeYou","https://fakeyou.com/"]
+];
 
-/* DOWNLOADER */
-function down(){
-let u=document.getElementById("url").value;
+let box=document.getElementById("voiceBox");
+box.innerHTML="";
 
-document.getElementById("downR").innerHTML=
-"Open tools:\n"+
-"<a href='https://ssyoutube.com/' target='_blank'>YouTube</a><br>"+
-"<a href='https://snaptik.app/' target='_blank'>TikTok</a><br>"+
-"<a href='https://snapinsta.app/' target='_blank'>Instagram</a><br>"+
-"<a href='https://fdown.net/' target='_blank'>Facebook</a>";
+tools.forEach(t=>{
+let d=document.createElement("div");
+d.className="option";
+d.innerText=t[0];
+
+d.onclick=()=>{
+copy(p);
+document.getElementById("voiceResult").innerText=
+"Voice prompt copied for "+t[0];
+window.open(t[1],"_blank");
+};
+
+box.appendChild(d);
+});
 
 }
 
